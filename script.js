@@ -25,11 +25,11 @@ function buildTree(array){
         console.log(current)
         for (let j = 0;j < array.length; j++){
             console.log(`current: ${current} array${j}: ${array[j]}`);
-            // I'm not sure why j isn't incrementing here
             console.log(`array: ${array}`);
             if ((current == array[j]) && (i !== j)){
                 console.log(`found duplicate at index i ${i}`);
-            } else break;
+                // Now we need to remove the duplicate element
+            };
         }
     }
 return array
