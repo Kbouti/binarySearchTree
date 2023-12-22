@@ -16,7 +16,32 @@ class Tree {
 }
 
 function buildTree(array){
-    // This function should take an array of numbers and turns it into a balanced binary tree full of Node objects appropriately placed.
-    // The first step is to sort the array and remove any duplicates
-    
+    // This function should take an array of numbers and turn it into a balanced binary tree full of Node objects appropriately placed.
+    // The first step is to sort the array and remove any duplicates.
+    // This function should return the level-0 root node
+
+    for (let i = 0; i < array.length; i++){
+        let current = array[i];
+        console.log(current)
+        for (let j = 0;j < array.length; j++){
+            console.log(`current: ${current} array${j}: ${array[j]}`);
+            // I'm not sure why j isn't incrementing here
+            console.log(`array: ${array}`);
+            if ((current == array[j]) && (i !== j)){
+                console.log(`found duplicate at index i ${i}`);
+            } else break;
+        }
+    }
+return array
 }
+
+let testArray1 = [6, 2];
+let testArray2 = [6, 3, 6];
+let testArray3 = [6, 3, 9, 2];
+let testArray4 = [6, 3, 9, 2, 3];
+
+
+// console.log(buildTree(testArray1));
+// console.log(buildTree(testArray2));
+console.log(buildTree(testArray4));
+
