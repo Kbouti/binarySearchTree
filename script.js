@@ -28,10 +28,15 @@ function buildTree(array){
             console.log(`array: ${array}`);
             if ((current == array[j]) && (i !== j)){
                 console.log(`found duplicate at index i ${i}`);
+                console.log(`The duplicate element is: ${array[i]}`);
+                console.log(`array: ${array}`);
+                array.splice(i, 1);
+                console.log(`array: ${array}`);
                 // Now we need to remove the duplicate element
             };
         }
     }
+    // The array has been searched for duplicates and duplicates removed
 return array
 }
 
