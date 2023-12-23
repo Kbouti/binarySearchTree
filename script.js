@@ -25,28 +25,33 @@ function buildTree(array){
         console.log(current)
         for (let j = 0;j < array.length; j++){
             console.log(`current: ${current} array${j}: ${array[j]}`);
-            console.log(`array: ${array}`);
             if ((current == array[j]) && (i !== j)){
                 console.log(`found duplicate at index i ${i}`);
                 console.log(`The duplicate element is: ${array[i]}`);
                 console.log(`array: ${array}`);
                 array.splice(i, 1);
                 console.log(`array: ${array}`);
-                // Now we need to remove the duplicate element
-            };
+                // This works to remove the first duplicate, but if there are 3+ cases of an element it doesn't work
+                // I think the problem lies in the comparison in line 28... We need a more robust way to not compare the node to itself
+            } else {
+                console.log(`Not a duplicate`);
+            }
         }
     }
-    // The array has been searched for duplicates and duplicates removed
+    // When we get to the point where we can add nodes - make sure to catch and do not allow duplicates
+
+
 return array
 }
 
 let testArray1 = [6, 2];
 let testArray2 = [6, 3, 6];
 let testArray3 = [6, 3, 9, 2];
-let testArray4 = [6, 3, 9, 2, 3];
+let testArray4 = [6, 3, 9, 2, 3, 9, 9];
+let testArray5 = [1, 1, 2, 2, 2, 1, 1]
 
 
 // console.log(buildTree(testArray1));
 // console.log(buildTree(testArray2));
-console.log(buildTree(testArray4));
+console.log(buildTree(testArray5));
 
