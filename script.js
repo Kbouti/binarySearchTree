@@ -29,12 +29,15 @@ function buildTree(array){
 for (let i = 0;i < array.length;i++){
     console.log(`i: ${i}`);
     let temp = array.splice(i, 1);
-    console.log(temp);
+    console.log(`temp: ${temp}`);
     console.log(array);
     console.log(`Need to compare ${temp} to every element in ${array}`);
 
     // It's skipping even indexes for some reason
     // It's because when we take array[j] we're using the modified array. So it's looking for the next index of the array we just removed an element from. So we're removing an element and incrementing the counter, then taking THAT element. We should only be doing one of those things per step. 
+    
+    // Ok, about to start over and use a while loop. The problem is that we're cycling through the array with a loop, but we remove an element and increment the index at the same time, so it's skipping elements
+    
     for (let j = 0;j< array.length;j++){
         if (temp == (array[j])){
             console.log(`duplicate found`);
@@ -43,6 +46,8 @@ for (let i = 0;i < array.length;i++){
             console.log(`array: ${array}`);
             
         }
+        console.log(`Checked if temp = array[j]`);
+        console.log(`${temp} !== ${array[j]}`);
     }
 }
 
