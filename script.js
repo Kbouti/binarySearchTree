@@ -24,6 +24,8 @@ function buildTree(array){
     // 1. Take the first element out of the array. Make a new array with all but the first element 
     // 2. Compare each element in this array to the element we removed. If the element is the same, return the test array. 
     // 3. Repeat until you've completed for the last element in the array.
+
+
 for (let i = 0;i < array.length;i++){
     console.log(`i: ${i}`);
     let temp = array.splice(i, 1);
@@ -32,6 +34,7 @@ for (let i = 0;i < array.length;i++){
     console.log(`Need to compare ${temp} to every element in ${array}`);
 
     // It's skipping even indexes for some reason
+    // It's because when we take array[j] we're using the modified array. So it's looking for the next index of the array we just removed an element from. So we're removing an element and incrementing the counter, then taking THAT element. We should only be doing one of those things per step. 
     for (let j = 0;j< array.length;j++){
         if (temp == (array[j])){
             console.log(`duplicate found`);
