@@ -25,34 +25,21 @@ function buildTree(array){
     // 2. Compare each element in this array to the element we removed. If the element is the same, return the test array. 
     // 3. Repeat until you've completed for the last element in the array.
 
+    let fullArray = array;
+    let temp;
 
-for (let i = 0;i < array.length;i++){
-    console.log(`i: ${i}`);
-    let temp = array.splice(i, 1);
-    console.log(`temp: ${temp}`);
-    console.log(array);
-    console.log(`Need to compare ${temp} to every element in ${array}`);
-
-    // It's skipping even indexes for some reason
-    // It's because when we take array[j] we're using the modified array. So it's looking for the next index of the array we just removed an element from. So we're removing an element and incrementing the counter, then taking THAT element. We should only be doing one of those things per step. 
-    
-    // Ok, about to start over and use a while loop. The problem is that we're cycling through the array with a loop, but we remove an element and increment the index at the same time, so it's skipping elements
-    
-    for (let j = 0;j< array.length;j++){
-        if (temp == (array[j])){
-            console.log(`duplicate found`);
-            console.log(`array: ${array}`);
-            array = array.slice(1, j);
-            console.log(`array: ${array}`);
-            
+    while (fullArray.length > 0){
+        temp = fullArray.splice(0,1);
+        console.log(`temp: ${temp}`);
+        console.log(`fullArray: ${fullArray}`);
+        for (let i = 0;i < fullArray.length; i++){
+            console.log(fullArray[i]);
+            if (temp == fullArray[i]){
+                console.log(`We got a match! Gotta remove this: ${temp}`);
+            }
         }
-        console.log(`Checked if temp = array[j]`);
-        console.log(`${temp} !== ${array[j]}`);
+
     }
-}
-
-    // When we get to the point where we can add nodes - make sure to catch and do not allow duplicates
-
 
 return array
 }
@@ -61,7 +48,7 @@ let testArray1 = [6, 2];
 let testArray2 = [6, 3, 6];
 let testArray3 = [6, 3, 9, 2];
 let testArray4 = [6, 3, 9, 2, 3, 9, 9];
-let testArray5 = [1, 2, 3, 4, 5, 6, 7];
+let testArray5 = [1, 2, 3, 4, 5, 6, 1, 7];
 
 
 // console.log(buildTree(testArray1));
