@@ -36,6 +36,10 @@ function buildTree(array){
             console.log(fullArray[i]);
             if (temp == fullArray[i]){
                 console.log(`We got a match! Gotta remove this: ${temp}`);
+                console.log(`fullArray pre slice: ${fullArray}`);
+                fullArray.splice(i, 1);
+                console.log(`fullArray post slice: ${fullArray}`);
+                // I think this might have worked to remove the duplicate element
             }
         }
 
