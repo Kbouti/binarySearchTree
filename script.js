@@ -35,6 +35,9 @@ function buildTree(array){
     while (fullArray.length > 0){
         temp = fullArray.splice(0,1);
         console.log(`temp: ${temp}`);
+        console.log(`temp type: ${typeof(temp)}`);
+        temp = Number(temp);
+        console.log(`temp type: ${typeof(temp)}`);
         console.log(`fullArray: ${fullArray}`);
         for (let i = 0;i < fullArray.length; i++){
             console.log(fullArray[i]);
@@ -50,18 +53,19 @@ function buildTree(array){
         finalArray.push(temp);
 
     }
-console.log(finalArray)
-return array
+
+return finalArray
 }
 
 let testArray1 = [6, 2];
 let testArray2 = [6, 3, 6];
 let testArray3 = [6, 3, 9, 2];
 let testArray4 = [6, 3, 9, 2, 3, 9, 9];
-let testArray5 = [1, 2, 3, 4, 5, 6, 1, 7];
+let testArray5 = [10, 2, 3, 4, 5, 5, 6, 1, 7];
 
 
 // console.log(buildTree(testArray1));
 // console.log(buildTree(testArray2));
 console.log(buildTree(testArray5));
+console.log(buildTree(testArray2));
 
