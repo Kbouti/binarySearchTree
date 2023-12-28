@@ -28,6 +28,10 @@ function buildTree(array){
     let fullArray = array;
     let temp;
 
+// Ok this is getting better but the issue is that temp is an array with a single element, we just want it to be a number
+
+
+    let finalArray = [];
     while (fullArray.length > 0){
         temp = fullArray.splice(0,1);
         console.log(`temp: ${temp}`);
@@ -41,10 +45,12 @@ function buildTree(array){
                 console.log(`fullArray post slice: ${fullArray}`);
                 // I think this might have worked to remove the duplicate element
             }
+            
         }
+        finalArray.push(temp);
 
     }
-
+console.log(finalArray)
 return array
 }
 
