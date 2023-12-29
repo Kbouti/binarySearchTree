@@ -1,4 +1,6 @@
 // Build a binary search tree
+// The buildTree function should take an array of numbers and turn it into a balanced binary tree full of Node objects appropriately placed.
+// This function should return the level-0 root node
 
 class Node {
   constructor(value) {
@@ -16,10 +18,7 @@ class Tree {
 }
 
 function buildTree(array) {
-  // This function should take an array of numbers and turn it into a balanced binary tree full of Node objects appropriately placed.
-  // The first step is to sort the array and remove any duplicates.
-  // This function should return the level-0 root node
-
+  // The first step is to remove any duplicate elements, still working on that. I can remove a single duplicate in a set but not 3+
   let temp;
   let finalArray = [];
   while (array.length > 0) {
@@ -32,9 +31,6 @@ function buildTree(array) {
     finalArray.push(temp);
   }
   array = finalArray;
-
-
-
   return array;
 }
 
@@ -42,13 +38,11 @@ let testArray1 = [6, 2];
 let testArray2 = [6, 3, 6];
 let testArray3 = [6, 3, 9, 2];
 let testArray4 = [6, 3, 9, 2, 3, 9, 9];
-let testArray5 = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6];
-
+let testArray5 = [
+  1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6,
+];
 
 // console.log(buildTree(testArray1));
 // console.log(buildTree(testArray2));
 console.log(buildTree(testArray5));
 console.log(buildTree(testArray2));
-
-// We still haven't solved the issue of finding and fixing an element that occurs more than twice
-// No matter how many times you duplicate a number  it only lists it twice. 
