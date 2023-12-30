@@ -39,7 +39,12 @@ function removeDuplicates(array) {
   let currentElement;
   for (let i = 0; i < array.length; i++) {
     console.log(`Loop number ${i + 1}`);
-    currentElement = array[0];
+    currentElement = array[i];
+
+    // Ok, we're super close here.
+    // If the above line uses array[i] it works with test 5, but fails the rest.
+    // If it uses array[0] the reverse is true.
+
     console.log(`currentElement: ${currentElement}`);
     if (newArray.length == 0) {
       console.log(`new array length is zero, so pushing ${currentElement}`);
@@ -53,7 +58,7 @@ function removeDuplicates(array) {
       console.log(`array: ${array}`);
     } else if (newArray.length !== 0) {
       console.log(
-        `newArray contains an element, compare ${currentElement} and determine if it needs to be added.`
+        `newArray contains an element, compare ${currentElement} to every element and determine if it needs to be added.`
       );
       let match = false;
       for (let j = 0; j < newArray.length; j++) {
@@ -90,5 +95,5 @@ let testArray5 = [
 // console.log(buildTree(testArray5));
 // console.log(buildTree(testArray2));
 
-console.log(removeDuplicates(testArray4));
+console.log(removeDuplicates(testArray5));
 // console.log(removeDuplicates(testArray2));
