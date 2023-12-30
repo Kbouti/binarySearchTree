@@ -34,17 +34,23 @@ function buildTree(array) {
   return array;
 }
 
+// *********************************************************************************************
+
 function removeDuplicates(array) {
+  let length = array.length;
+  let tempArray = array;
   let newArray = [];
   let currentElement;
-  for (let i = 0; i < array.length; i++) {
+  for (let i = 0; i < length; i++) {
     console.log(`Loop number ${i + 1}`);
-    currentElement = array[i];
+    currentElement = tempArray[i];
 
     // Ok, we're super close here.
     // If the above line uses array[i] it works with test 5, but fails the rest.
     // If it uses array[0] the reverse is true.
-
+    // if (currentElement == undefined){
+    //     break;
+    // }
     console.log(`currentElement: ${currentElement}`);
     if (newArray.length == 0) {
       console.log(`new array length is zero, so pushing ${currentElement}`);
@@ -76,8 +82,13 @@ function removeDuplicates(array) {
         array = array.splice(1);
         console.log(`newArray: ${newArray}`);
         console.log(`array: ${array}`);
+        console.log(`tempArray: ${tempArray}`);
       }
     }
+    console.log(`end of loop`)
+    console.log(`newArray: ${newArray}`);
+    console.log(`array: ${array}`);
+    console.log(`tempArray: ${tempArray}`);
   }
   return newArray;
 }
@@ -95,5 +106,5 @@ let testArray5 = [
 // console.log(buildTree(testArray5));
 // console.log(buildTree(testArray2));
 
-console.log(removeDuplicates(testArray5));
+console.log(removeDuplicates(testArray1));
 // console.log(removeDuplicates(testArray2));
