@@ -35,19 +35,20 @@ function buildTree(array) {
 }
 
 function removeDuplicates(array) {
-  let firstElement = array[0];
+    
   let newArray = [];
-  let nextElement;
-  let j = 0;
-  newArray.push(firstElement);
-  while (array.length > 0) {
-    nextElement = array[j];
-    for (let i = 0; i < newArray.length; i++) {
-      if (nextElement == newArray[i]) {
-        j++;
-      }
+  let currentElement;
+  for (let i = 0; i <= array.length; i++) {
+    currentElement = array[0];
+    console.log(`currentElement: ${currentElement}`);
+    if (newArray.length == 0){
+        console.log(`new array length is zero, so pushing ${currentElement}`);
+        newArray.push(currentElement);
+    } else if (newArray.length !== 0){
+        console.log(`newArray contains an element, compare ${currentElement} and determine if it needs to be added.`)
     }
   }
+  return newArray;
 }
 
 let testArray1 = [6, 2];
@@ -60,5 +61,8 @@ let testArray5 = [
 
 // console.log(buildTree(testArray1));
 // console.log(buildTree(testArray2));
-console.log(buildTree(testArray5));
-console.log(buildTree(testArray2));
+// console.log(buildTree(testArray5));
+// console.log(buildTree(testArray2));
+
+// console.log(removeDuplicates(testArray5));
+console.log(removeDuplicates(testArray2));
