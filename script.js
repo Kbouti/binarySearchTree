@@ -35,17 +35,43 @@ function buildTree(array) {
 }
 
 function removeDuplicates(array) {
-    
   let newArray = [];
   let currentElement;
-  for (let i = 0; i <= array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
+    console.log(`Loop number ${i + 1}`);
     currentElement = array[0];
     console.log(`currentElement: ${currentElement}`);
-    if (newArray.length == 0){
-        console.log(`new array length is zero, so pushing ${currentElement}`);
+    if (newArray.length == 0) {
+      console.log(`new array length is zero, so pushing ${currentElement}`);
+      console.log(`newArray: ${newArray}`);
+      newArray.push(currentElement);
+      console.log(`newArray after push: ${newArray}`);
+      // We gotta remove the first element from array now
+      console.log(`now attempting to remove first element`);
+      console.log(`array: ${array}`);
+      array = array.splice(1);
+      console.log(`array: ${array}`);
+    } else if (newArray.length !== 0) {
+      console.log(
+        `newArray contains an element, compare ${currentElement} and determine if it needs to be added.`
+      );
+      let match = false;
+      for (let j = 0; j < newArray.length; j++) {
+        console.log(`comparing ${currentElement} to ${newArray[j]}`);
+        if (currentElement == newArray[j]) {
+          console.log(`match found! `);
+          match = true;
+        }
+      }
+      if (match == false) {
+        console.log(`No match found, appending element.`);
+        console.log(`newArray: ${newArray}`);
+        console.log(`array: ${array}`);
         newArray.push(currentElement);
-    } else if (newArray.length !== 0){
-        console.log(`newArray contains an element, compare ${currentElement} and determine if it needs to be added.`)
+        array = array.splice(1);
+        console.log(`newArray: ${newArray}`);
+        console.log(`array: ${array}`);
+      }
     }
   }
   return newArray;
@@ -64,5 +90,5 @@ let testArray5 = [
 // console.log(buildTree(testArray5));
 // console.log(buildTree(testArray2));
 
-// console.log(removeDuplicates(testArray5));
-console.log(removeDuplicates(testArray2));
+console.log(removeDuplicates(testArray4));
+// console.log(removeDuplicates(testArray2));
