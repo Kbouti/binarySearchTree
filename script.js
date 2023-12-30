@@ -34,6 +34,22 @@ function buildTree(array) {
   return array;
 }
 
+function removeDuplicates(array) {
+  let firstElement = array[0];
+  let newArray = [];
+  let nextElement;
+  let j = 0;
+  newArray.push(firstElement);
+  while (array.length > 0) {
+    nextElement = array[j];
+    for (let i = 0; i < newArray.length; i++) {
+      if (nextElement == newArray[i]) {
+        j++;
+      }
+    }
+  }
+}
+
 let testArray1 = [6, 2];
 let testArray2 = [6, 3, 6];
 let testArray3 = [6, 3, 9, 2];
