@@ -37,11 +37,10 @@ function buildTree(array) {
 // *********************************************************************************************
 
 function removeDuplicates(array) {
-  let length = array.length;
   const tempArray = Array.from(array);
   let newArray = [];
   let currentElement;
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < tempArray.length; i++) {
     currentElement = tempArray[i];
     if (newArray.length == 0) {
       newArray.push(currentElement);
