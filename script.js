@@ -38,7 +38,7 @@ function buildTree(array) {
 
 function removeDuplicates(array) {
   let length = array.length;
-  const tempArray = array;
+  const tempArray = Array.from(array);
   let newArray = [];
   let currentElement;
   for (let i = 0; i < length; i++) {
@@ -63,6 +63,10 @@ function removeDuplicates(array) {
       //   tempArray.push(newNumber)
       console.log(`array: ${array}`);
       console.log(`tempArray: ${tempArray}`);
+        console.log(`typeof array: ${typeof(array)}`);
+        console.log(`typeof array: ${typeof(tempArray)}`);
+
+
       // This should not be different than tempArray above (line 57)
       // ***************************************************************************
     } else if (newArray.length !== 0) {
@@ -109,5 +113,5 @@ let testArray5 = [
 // console.log(buildTree(testArray5));
 // console.log(buildTree(testArray2));
 
-console.log(removeDuplicates(testArray1));
+console.log(removeDuplicates(testArray5));
 // console.log(removeDuplicates(testArray2));
