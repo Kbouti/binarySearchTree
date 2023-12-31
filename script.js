@@ -42,60 +42,22 @@ function removeDuplicates(array) {
   let newArray = [];
   let currentElement;
   for (let i = 0; i < length; i++) {
-    console.log(`Loop number ${i + 1}`);
-    console.log(`tempArray: ${tempArray}`);
     currentElement = tempArray[i];
-    console.log(`tempArray: ${tempArray}`);
-    console.log(`currentElement: ${currentElement}`);
     if (newArray.length == 0) {
-      console.log(`new array length is zero, so pushing ${currentElement}`);
-      console.log(`newArray: ${newArray}`);
       newArray.push(currentElement);
-      console.log(`newArray after push: ${newArray}`);
-      console.log(`now attempting to remove first element from array`);
-      console.log(`array: ${array}`);
-      console.log(`tempArray: ${tempArray}`);
-      // ***************************************************************************
-      // Somehow this line is changing tempArray:
       array = array.splice(1);
-      //  let newNumber = array.splice(1);
-      //   console.log(`newNumber: ${newNumber}`);
-      //   tempArray.push(newNumber)
-      console.log(`array: ${array}`);
-      console.log(`tempArray: ${tempArray}`);
-        console.log(`typeof array: ${typeof(array)}`);
-        console.log(`typeof array: ${typeof(tempArray)}`);
-
-
-      // This should not be different than tempArray above (line 57)
-      // ***************************************************************************
     } else if (newArray.length !== 0) {
-      console.log(
-        `newArray contains an element, compare ${currentElement} to every element and determine if it needs to be added.`
-      );
       let match = false;
       for (let j = 0; j < newArray.length; j++) {
-        console.log(`comparing ${currentElement} to ${newArray[j]}`);
         if (currentElement == newArray[j]) {
-          console.log(`match found! `);
           match = true;
         }
       }
       if (match == false) {
-        console.log(`No match found, appending element.`);
-        console.log(`newArray: ${newArray}`);
-        console.log(`array: ${array}`);
         newArray.push(currentElement);
         array = array.splice(1);
-        console.log(`newArray: ${newArray}`);
-        console.log(`array: ${array}`);
-        console.log(`tempArray: ${tempArray}`);
       }
     }
-    console.log(`end of loop`);
-    console.log(`newArray: ${newArray}`);
-    console.log(`array: ${array}`);
-    console.log(`tempArray: ${tempArray}`);
   }
   return newArray;
 }
