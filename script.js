@@ -38,7 +38,7 @@ function buildTree(array) {
 
 function removeDuplicates(array) {
   let length = array.length;
-  let tempArray = array;
+  const tempArray = array;
   let newArray = [];
   let currentElement;
   for (let i = 0; i < length; i++) {
@@ -52,16 +52,18 @@ function removeDuplicates(array) {
       console.log(`newArray: ${newArray}`);
       newArray.push(currentElement);
       console.log(`newArray after push: ${newArray}`);
-      console.log(`now attempting to remove first element`);
+      console.log(`now attempting to remove first element from array`);
       console.log(`array: ${array}`);
       console.log(`tempArray: ${tempArray}`);
       // ***************************************************************************
       // Somehow this line is changing tempArray:
       array = array.splice(1);
-      // Why??
+      //  let newNumber = array.splice(1);
+      //   console.log(`newNumber: ${newNumber}`);
+      //   tempArray.push(newNumber)
       console.log(`array: ${array}`);
       console.log(`tempArray: ${tempArray}`);
-      // This should not be different than tempArray above (line 63)
+      // This should not be different than tempArray above (line 57)
       // ***************************************************************************
     } else if (newArray.length !== 0) {
       console.log(
