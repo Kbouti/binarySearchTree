@@ -43,25 +43,26 @@ function removeDuplicates(array) {
   let currentElement;
   for (let i = 0; i < length; i++) {
     console.log(`Loop number ${i + 1}`);
+    console.log(`tempArray: ${tempArray}`);
     currentElement = tempArray[i];
-
-    // Ok, we're super close here.
-    // If the above line uses array[i] it works with test 5, but fails the rest.
-    // If it uses array[0] the reverse is true.
-    // if (currentElement == undefined){
-    //     break;
-    // }
+    console.log(`tempArray: ${tempArray}`);
     console.log(`currentElement: ${currentElement}`);
     if (newArray.length == 0) {
       console.log(`new array length is zero, so pushing ${currentElement}`);
       console.log(`newArray: ${newArray}`);
       newArray.push(currentElement);
       console.log(`newArray after push: ${newArray}`);
-      // We gotta remove the first element from array now
       console.log(`now attempting to remove first element`);
       console.log(`array: ${array}`);
+      console.log(`tempArray: ${tempArray}`);
+      // ***************************************************************************
+      // Somehow this line is changing tempArray:
       array = array.splice(1);
+      // Why??
       console.log(`array: ${array}`);
+      console.log(`tempArray: ${tempArray}`);
+      // This should not be different than tempArray above (line 63)
+      // ***************************************************************************
     } else if (newArray.length !== 0) {
       console.log(
         `newArray contains an element, compare ${currentElement} to every element and determine if it needs to be added.`
@@ -85,7 +86,7 @@ function removeDuplicates(array) {
         console.log(`tempArray: ${tempArray}`);
       }
     }
-    console.log(`end of loop`)
+    console.log(`end of loop`);
     console.log(`newArray: ${newArray}`);
     console.log(`array: ${array}`);
     console.log(`tempArray: ${tempArray}`);
