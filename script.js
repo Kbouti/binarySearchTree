@@ -17,30 +17,11 @@ class Tree {
   }
 }
 
-function buildTree(array) {
-  // The first step is to remove any duplicate elements, still working on that. I can remove a single duplicate in a set but not 3+
-  let temp;
-  let finalArray = [];
-  while (array.length > 0) {
-    temp = Number(array.splice(0, 1));
-    for (let i = 0; i < array.length; i++) {
-      if (temp === array[i]) {
-        array.splice(i, 1);
-      }
-    }
-    finalArray.push(temp);
-  }
-  array = finalArray;
-  return array;
+function compareFunction(a, b) {
+  return a - b;
 }
 
-// *********************************************************************************************
-
-function compareFunction(a, b){
-    return a - b;
- }
-
-function removeDuplicates(array) {
+function buildTree(array) {
   const tempArray = Array.from(array);
   let newArray = [];
   let currentElement;
@@ -63,30 +44,15 @@ function removeDuplicates(array) {
     }
   }
 
-  // At this point newArray has had duplicates removed, now we need to sort it. 
+  newArray.sort(compareFunction);
+// newArray is now sorted and duplicates removed. Ready to begin binary search tree.
+
+
 
   return newArray;
 }
 
-let testArray1 = [6, 2];
-let testArray2 = [6, 3, 6];
-let testArray3 = [6, 3, 9, 2];
-let testArray4 = [6, 3, 9, 2, 3, 9, 9];
-let testArray5 = [
-  1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6,
-];
-let testArray6 = [12, 3, 54, 109, 423];
+let testArray1 = [6, 2, 22, 12, 54, 22];
+let testArray2 = [12, 3, 54, 109, 54, 3, 423];
 
-// console.log(buildTree(testArray1));
-// console.log(buildTree(testArray2));
-// console.log(buildTree(testArray5));
-// console.log(buildTree(testArray2));
-
-console.log(removeDuplicates(testArray5));
-// console.log(removeDuplicates(testArray2));
-
-
-
-
-
-console.log(testArray6.sort(compareFunction));
+console.log(buildTree(testArray2));
