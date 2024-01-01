@@ -47,7 +47,10 @@ function buildTree(array) {
   newArray.sort(compareFunction);
 // newArray is now sorted and duplicates removed. Ready to begin binary search tree.
 
-
+let middleNodeIndex = Math.floor(newArray.length/2);
+console.log(`middleNodeIndex: ${middleNodeIndex}`);
+let middleNode = newArray[middleNodeIndex];
+console.log(`middleNode: ${middleNode}`);
 
   return newArray;
 }
