@@ -36,6 +36,10 @@ function buildTree(array) {
 
 // *********************************************************************************************
 
+function compareFunction(a, b){
+    return a - b;
+ }
+
 function removeDuplicates(array) {
   const tempArray = Array.from(array);
   let newArray = [];
@@ -58,6 +62,9 @@ function removeDuplicates(array) {
       }
     }
   }
+
+  // At this point newArray has had duplicates removed, now we need to sort it. 
+
   return newArray;
 }
 
@@ -68,6 +75,7 @@ let testArray4 = [6, 3, 9, 2, 3, 9, 9];
 let testArray5 = [
   1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6,
 ];
+let testArray6 = [12, 3, 54, 109, 423];
 
 // console.log(buildTree(testArray1));
 // console.log(buildTree(testArray2));
@@ -76,3 +84,9 @@ let testArray5 = [
 
 console.log(removeDuplicates(testArray5));
 // console.log(removeDuplicates(testArray2));
+
+
+
+
+
+console.log(testArray6.sort(compareFunction));
