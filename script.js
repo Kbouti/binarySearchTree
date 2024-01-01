@@ -17,11 +17,11 @@ class Tree {
   }
 }
 
-function compareFunction(a, b) {
+function compareNumbers(a, b) {
   return a - b;
 }
 
-function buildTree(array) {
+function formatArray(array) {
   const tempArray = Array.from(array);
   let newArray = [];
   let currentElement;
@@ -43,16 +43,22 @@ function buildTree(array) {
       }
     }
   }
-
-  newArray.sort(compareFunction);
-// newArray is now sorted and duplicates removed. Ready to begin binary search tree.
-
-let middleNodeIndex = Math.floor(newArray.length/2);
-console.log(`middleNodeIndex: ${middleNodeIndex}`);
-let middleNode = newArray[middleNodeIndex];
-console.log(`middleNode: ${middleNode}`);
-
+  newArray.sort(compareNumbers);
   return newArray;
+}
+
+function buildTree(array) {
+  let formattedArray = formatArray(array);
+  let middleNodeIndex = Math.floor(formattedArray.length / 2);
+  console.log(`middleNodeIndex: ${middleNodeIndex}`);
+  let middleNode = formattedArray[middleNodeIndex];
+  console.log(`middleNode: ${middleNode}`);
+
+  // So we've sorted the array and removed duplicates and found the center node. This will be the root node the function returns
+  // Next we need to recursively call the function on the left side of the Array and the right side
+  // The root node of the main function will will point to the root node of the left and the right sides
+
+  return formattedArray;
 }
 
 let testArray1 = [6, 2, 22, 12, 54, 22];
