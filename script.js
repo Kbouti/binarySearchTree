@@ -51,14 +51,23 @@ function buildTree(array) {
   let formattedArray = formatArray(array);
   let middleNodeIndex = Math.floor(formattedArray.length / 2);
   console.log(`middleNodeIndex: ${middleNodeIndex}`);
-  let middleNode = formattedArray[middleNodeIndex];
-  console.log(`middleNode: ${middleNode}`);
+  let rootNodeValue = formattedArray[middleNodeIndex];
+  console.log(`rootNodeValue: ${rootNodeValue}`);
+  let rootNode = new Node(rootNodeValue);
 
-  // So we've sorted the array and removed duplicates and found the center node. This will be the root node the function returns
-  // Next we need to recursively call the function on the left side of the Array and the right side
-  // The root node of the main function will will point to the root node of the left and the right sides
+  // Now we gotta establish 2 arrays for elements before and after the root node
+  console.log(formattedArray);
+  let firstHalf = formattedArray.slice(0, middleNodeIndex);
+  console.log(firstHalf);
+  let lastHalf = formattedArray.slice(middleNodeIndex + 1);
+  console.log(lastHalf);
 
-  return formattedArray;
+    // rootNode.previous = buildTree(firstHalf);
+  //   rootNode.next = buildTree(lastHalf);
+
+  // ^This error'd out, too much recursion. But I think we're on the right track.
+
+  return rootNode;
 }
 
 let testArray1 = [6, 2, 22, 12, 54, 22];
