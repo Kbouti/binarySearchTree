@@ -66,7 +66,13 @@ function buildTree(array) {
 
 // I think our base case needs to be length = 3. Then we can call recursively for longer arrays, and assign previous and next for the 3 nodes available
 // If the array length is less than three, then one of the nodes is a ?leaf node? (A node with only one child)
+if (array.length ==3){
+    rootNode.previous = new Node(formattedArray[0]);
+    rootNode.previous.next = rootNode;
 
+    rootNode.next = new Node(formattedArray[2]);
+    rootNode.next.previous = rootNode;
+}
 
 if (array.length == 0){
     console.log(`empty array found`);
