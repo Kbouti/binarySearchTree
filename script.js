@@ -83,12 +83,15 @@ function buildTree(array) {
   if (formattedArray.length == 0) {
     console.log(`empty array found`);
     return null;
-  } else if ((formattedArray.length = 1)) {
+  } else if ((formattedArray.length == 1)) {
     console.log(`found array length 1`);
     // return new Node(array[0]);
+  } else if (formattedArray.length > 3){
+    // This should happen higher up
   }
 // ***********************************************************************************************
 // If there are 3 nodes, create a node for each and link. If there are more than three, create root node, and link next and previous to a recursive call of buildTree
+// If there's 2 nodes, pick either the smaller or bigger one to be the root node, and link them. Shouldn't matter which as long as we're consistent
 // ***********************************************************************************************
 
   return rootNode;
