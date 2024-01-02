@@ -47,9 +47,28 @@ function formatArray(array) {
   return newArray;
 }
 
+
+
+
+
+
+const prettyPrint = (node, prefix = "", isLeft = true) => {
+    if (node === null) {
+      return;
+    }
+    if (node.right !== null) {
+      prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+    if (node.left !== null) {
+      prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    }
+  };
+
+
 function buildTree(array) {
   let formattedArray = formatArray(array);
-let rootNode;
+  let rootNode;
   if (formattedArray.length == 0) {
     return null;
   } else if (formattedArray.length === 1) {
@@ -68,27 +87,19 @@ let rootNode;
     rootNode.previous = previousNode;
     rootNode.next = nextNode;
     nextNode.previous = rootNode;
-    // return rootNode;
   } else {
-    // Here we need to use recursion
-
     let middleNodeIndex = Math.floor(formattedArray.length / 2);
     console.log(`middleNodeIndex: ${middleNodeIndex}`);
     let rootNodeValue = formattedArray[middleNodeIndex];
     console.log(`rootNodeValue: ${rootNodeValue}`);
-
     rootNode = new Node(rootNodeValue);
-
-    // Now we gotta establish 2 arrays for elements before and after the root node
     console.log(`formattedArray: ${formattedArray}`);
     let firstHalf = formattedArray.slice(0, middleNodeIndex);
     console.log(`firstHalf: ${firstHalf}`);
     let lastHalf = formattedArray.slice(middleNodeIndex + 1);
     console.log(`lastHalf: ${lastHalf}`);
-
     let previousNode = buildTree(firstHalf);
     let nextNode = buildTree(lastHalf);
-
     previousNode.next = rootNode;
     rootNode.previous = previousNode;
     rootNode.next = nextNode;
@@ -103,4 +114,8 @@ let testArray2 = [12, 3, 54, 109, 54, 3, 423];
 let testArray3 = [6, 2];
 let testArray4 = [6, 2, 3];
 
-console.log(buildTree(testArray1));
+console.log(buildTree(testArray3));
+
+let testNode = buildTree(testArray3)
+
+prettyPrint(testNode);
