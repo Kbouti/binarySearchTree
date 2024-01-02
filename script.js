@@ -87,14 +87,9 @@ function buildTree(array) {
     console.log(`found array length 1`);
     // return new Node(array[0]);
   }
-//   let firstSideRoot = buildTree(firstHalf);
-//   let lastSideRoot = buildTree(lastHalf);
-
-//   console.log(`firstSideRoot: ${firstSideRoot} `);
-//   console.log(`lastSideRoot: ${lastSideRoot}`);
-
-//   rootNode.previous = buildTree(firstHalf);
-//   rootNode.next = buildTree(lastHalf);
+// ***********************************************************************************************
+// If there are 3 nodes, create a node for each and link. If there are more than three, create root node, and link next and previous to a recursive call of buildTree
+// ***********************************************************************************************
 
   return rootNode;
 }
