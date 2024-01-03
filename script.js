@@ -5,8 +5,8 @@
 class Node {
   constructor(value) {
     this.value = value;
-    this.previous = null;
-    this.next = null;
+    this.left = null;
+    this.right = null;
   }
 }
 
@@ -77,16 +77,16 @@ function buildTree(array) {
   } else if (formattedArray.length === 2) {
     rootNode = new Node(formattedArray[0]);
     let nextNode = new Node(formattedArray[1]);
-    rootNode.next = nextNode;
-    nextNode.previous = rootNode;
+    rootNode.right = nextNode;
+    nextNode.left = rootNode;
   } else if (formattedArray.length === 3) {
     rootNode = new Node(formattedArray[1]);
     let previousNode = new Node(formattedArray[0]);
     let nextNode = new Node(formattedArray[2]);
-    previousNode.next = rootNode;
-    rootNode.previous = previousNode;
-    rootNode.next = nextNode;
-    nextNode.previous = rootNode;
+    previousNode.right = rootNode;
+    rootNode.left = previousNode;
+    rootNode.right = nextNode;
+    nextNode.left = rootNode;
   } else {
     let middleNodeIndex = Math.floor(formattedArray.length / 2);
     console.log(`middleNodeIndex: ${middleNodeIndex}`);
@@ -100,12 +100,11 @@ function buildTree(array) {
     console.log(`lastHalf: ${lastHalf}`);
     let previousNode = buildTree(firstHalf);
     let nextNode = buildTree(lastHalf);
-    previousNode.next = rootNode;
-    rootNode.previous = previousNode;
-    rootNode.next = nextNode;
-    nextNode.previous = rootNode;
+    previousNode.right = rootNode;
+    rootNode.left = previousNode;
+    rootNode.right = nextNode;
+    nextNode.left = rootNode;
   }
-
   return rootNode;
 }
 
