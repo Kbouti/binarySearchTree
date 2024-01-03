@@ -77,8 +77,17 @@ function buildTree(array) {
   } else if (formattedArray.length === 2) {
     rootNode = new Node(formattedArray[0]);
     let nextNode = new Node(formattedArray[1]);
+    console.log(`something should happen`)
     rootNode.right = nextNode;
     nextNode.left = rootNode;
+console.log(rootNode.right);
+
+// I think the problem is that we're establishing this new node, but we're never returning it. So it isn't available outside the scope of this function.
+// The solution would be to establish a Tree (from class Tree). The Tree will point to the first node which contains references to the other nodes. At the end we'll return the Tree - Which should maintain access to those nodes? Maybe? I'm less sure after spelling it out
+
+
+
+
   } else if (formattedArray.length === 3) {
     rootNode = new Node(formattedArray[1]);
     let previousNode = new Node(formattedArray[0]);
@@ -116,5 +125,8 @@ let testArray4 = [6, 2, 3];
 console.log(buildTree(testArray3));
 
 let testNode = buildTree(testArray3)
+console.log(testNode.right
+    )
 
-prettyPrint(testNode);
+
+// prettyPrint(testNode);
