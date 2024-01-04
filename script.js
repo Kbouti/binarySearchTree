@@ -1,26 +1,3 @@
-// ******************************************************************************************************************************************************
-// Classes:
-
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-  isLeafNode() {
-    if (this.right == null && this.left == null) {
-      return true;
-    }
-    return false;
-  }
-}
-
-class Tree {
-  constructor(array) {
-    this.array = array;
-    this.root = buildTree(array);
-  }
-}
 
 // ******************************************************************************************************************************************************
 // Helper Functions:
@@ -144,6 +121,43 @@ let testArray4 = [6, 2, 22, 12, 54, 22];
 let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 
+
+// ******************************************************************************************************************************************************
+// Classes:
+
+class Node {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+    isLeafNode() {
+      if (this.right == null && this.left == null) {
+        return true;
+      }
+      return false;
+    }
+  }
+  
+  class Tree {
+    constructor(array) {
+      this.array = array;
+      this.root = buildTree(array);
+    }
+
+    insert(value){
+let rootValue = this.root.value;
+let isLeaf = this.root.isLeafNode();
+console.log(`rootvalue: ${rootValue}`);
+console.log(`isLeaf: ${isLeaf}`);
+    };
+
+    delete(value){
+        
+    }
+  }
+  
+
 // ******************************************************************************************************************************************************
 // Tests
 
@@ -152,9 +166,9 @@ let testTree = new Tree(testArray5);
 
 // logPrettyTree(testTree);
 
-createTestTree(50)
-
-
+// createTestTree(16)
+let testTree1 = createTestTree(1);
+testTree1.insert(3);
 
 // Next up we need to write insert and delete functions that accepts a value to insert/delete
 // We can't do this by manipulating the original array, that's cheating. It has to act on the tree. 
