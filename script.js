@@ -22,14 +22,14 @@ function compareNumbers(a, b) {
 }
 
 function formatArray(array) {
-  const tempArray = Array.from(array);
+  let tempArray = Array.from(array);
   let newArray = [];
   let currentElement;
-  for (let i = 0; i < tempArray.length; i++) {
-    currentElement = tempArray[i];
+  for (let i = 0; i < array.length; i++) {
+    currentElement = array[i];
     if (newArray.length == 0) {
       newArray.push(currentElement);
-      array = array.splice(1);
+      tempArray = tempArray.splice(1);
     } else if (newArray.length !== 0) {
       let match = false;
       for (let j = 0; j < newArray.length; j++) {
@@ -39,7 +39,7 @@ function formatArray(array) {
       }
       if (match == false) {
         newArray.push(currentElement);
-        array = array.splice(1);
+        tempArray = tempArray.splice(1);
       }
     }
   }
@@ -109,11 +109,17 @@ let testArray4 = [6, 2, 22, 12, 54, 22];
 let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 let testArray7 = [7, 6, 5, 4, 3, 2, 1];
 
-let testNode = buildTree(testArray7);
+// let testNode = buildTree(testArray7);
 
-console.log(testNode);
-console.log(testNode.right);
-console.log(testNode.left);
-console.log(testNode.value);
+// console.log(testNode);
+// console.log(testNode.right);
+// console.log(testNode.left);
+// console.log(testNode.value);
 
 // prettyPrint(testNode);
+
+
+let testTree = new Tree(testArray7);
+console.log(testTree);
+
+// prettyPrint(testTree.root)
