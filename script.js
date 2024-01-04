@@ -13,7 +13,7 @@ class Node {
 class Tree {
   constructor(array) {
     this.array = array;
-    this.root;
+    this.root = buildTree(array);
   }
 }
 
@@ -70,25 +70,20 @@ function buildTree(array) {
   let formattedArray = formatArray(array);
   let rootNode;
   if (formattedArray.length == 0) {
+    console.log(`array length == 0`)
     return null;
   } else if (formattedArray.length === 1) {
+    console.log(`array length == 1`)
     rootNode = new Node(formattedArray[0]);
-    // return rootNode;
   } else if (formattedArray.length === 2) {
+    console.log(`array length == 2`)
     rootNode = new Node(formattedArray[0]);
     let nextNode = new Node(formattedArray[1]);
-    console.log(`something should happen`)
     rootNode.right = nextNode;
     nextNode.left = rootNode;
 console.log(rootNode.right);
-
-// I think the problem is that we're establishing this new node, but we're never returning it. So it isn't available outside the scope of this function.
-// The solution would be to establish a Tree (from class Tree). The Tree will point to the first node which contains references to the other nodes. At the end we'll return the Tree - Which should maintain access to those nodes? Maybe? I'm less sure after spelling it out
-
-
-
-
   } else if (formattedArray.length === 3) {
+    console.log(`array length == 3`)
     rootNode = new Node(formattedArray[1]);
     let previousNode = new Node(formattedArray[0]);
     let nextNode = new Node(formattedArray[2]);
@@ -97,6 +92,7 @@ console.log(rootNode.right);
     rootNode.right = nextNode;
     nextNode.left = rootNode;
   } else {
+    console.log(`array length > 3`)
     let middleNodeIndex = Math.floor(formattedArray.length / 2);
     console.log(`middleNodeIndex: ${middleNodeIndex}`);
     let rootNodeValue = formattedArray[middleNodeIndex];
@@ -116,17 +112,24 @@ console.log(rootNode.right);
   }
   return rootNode;
 }
+let testArray1 = [6];
+let testArray2 = [6, 2];
+let testArray3 = [6, 2, 3];
+let testArray4 = [6, 2, 22, 12, 54, 22];
+let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 
-let testArray1 = [6, 2, 22, 12, 54, 22];
-let testArray2 = [12, 3, 54, 109, 54, 3, 423];
-let testArray3 = [6, 2];
-let testArray4 = [6, 2, 3];
 
-console.log(buildTree(testArray3));
 
-let testNode = buildTree(testArray3)
-console.log(testNode.right
-    )
+let testNode = buildTree(testArray4);
+
+console.log(testNode);
+console.log(testNode.right);
+console.log(testNode.left);
 
 
 // prettyPrint(testNode);
+
+
+
+
+// I'm not understanding the binary search tree properly in my current version of the code. The root node points to a left and right. Each of those point to a left and a right - but neight of them point to the root node. They are pointed to by the root node
