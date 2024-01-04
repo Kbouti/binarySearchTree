@@ -107,7 +107,7 @@ let testArray2 = [6, 2];
 let testArray3 = [6, 2, 3];
 let testArray4 = [6, 2, 22, 12, 54, 22];
 let testArray5 = [12, 3, 54, 109, 54, 3, 423];
-let testArray7 = [7, 6, 5, 4, 3, 2, 1];
+const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 
 // let testNode = buildTree(testArray7);
 
@@ -119,7 +119,7 @@ let testArray7 = [7, 6, 5, 4, 3, 2, 1];
 // prettyPrint(testNode);
 
 
-let testTree = new Tree(testArray7);
+let testTree = new Tree(testArray4);
 console.log(testTree);
 
-// prettyPrint(testTree.root)
+prettyPrint(testTree.root, prefix = "", isLeft = true)
