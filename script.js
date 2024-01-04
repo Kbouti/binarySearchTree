@@ -153,3 +153,8 @@ let testTree = new Tree(testArray5);
 // logPrettyTree(testTree);
 
 createTestTree(50)
+
+
+
+// Next up we need to write insert and delete functions that accepts a value to insert/delete
+// We can't do this by manipulating the original array, that's cheating. It has to act on the tree. 
