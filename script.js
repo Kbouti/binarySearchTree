@@ -1,4 +1,3 @@
-
 // ******************************************************************************************************************************************************
 // Helper Functions:
 
@@ -121,54 +120,82 @@ let testArray4 = [6, 2, 22, 12, 54, 22];
 let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 
-
 // ******************************************************************************************************************************************************
 // Classes:
 
 class Node {
-    constructor(value) {
-      this.value = value;
-      this.left = null;
-      this.right = null;
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+  isLeafNode() {
+    if (this.right == null && this.left == null) {
+      return true;
     }
-    isLeafNode() {
-      if (this.right == null && this.left == null) {
-        return true;
+    return false;
+  }
+  hasOnlyRight() {
+    if (this.right !== null && this.left == null) {
+      return true;
+    }
+  }
+}
+
+class Tree {
+  constructor(array) {
+    this.array = array;
+    this.root = buildTree(array);
+  }
+
+  insert(value) {
+    let root = this.root;
+    let rootValue = root.value;
+    let isLeaf = root.isLeafNode();
+    console.log(`rootvalue: ${rootValue}`);
+    console.log(`isLeaf: ${isLeaf}`);
+
+    let currentNode = root;
+
+    if (currentNode.value === value) {
+      console.log(`This value already exists in the list, we do nothing.`);
+      return;
+    } else if (currentNode.isLeafNode()) {
+      console.log(`found leaf node`);
+      if (currentNode.value > value) {
+        console.log(
+          `Our value is lower, we need to create a new node left of this for our value`
+        );
+        let newNode = new Node(value);
+        currentNode.left = newNode;
+      } else {
+        console.log(`Our value is higher, we need a new node to the right`);
+        let newNode = new Node(value);
+        currentNode.right = newNode;
       }
-      return false;
+    } else if (currentNode.hasOnlyRight()) {
+      console.log(`advancing currentNode to right`);
+      currentNode = currentNode.right;
+    } else {
+      console.log(`advancing currentNode to left`);
+      currentNode = currentNode.left;
     }
+    // Ok we've established we need to move down the tree. There is at least one more node we need to compare. How do we choose it and compare
   }
-  
-  class Tree {
-    constructor(array) {
-      this.array = array;
-      this.root = buildTree(array);
-    }
 
-    insert(value){
-let rootValue = this.root.value;
-let isLeaf = this.root.isLeafNode();
-console.log(`rootvalue: ${rootValue}`);
-console.log(`isLeaf: ${isLeaf}`);
-    };
-
-    delete(value){
-        
-    }
-  }
-  
+  delete(value) {}
+}
 
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray5);
+let testTree = new Tree(testArray2);
 // console.log(testTree);
 
-// logPrettyTree(testTree);
-
 // createTestTree(16)
-let testTree1 = createTestTree(1);
-testTree1.insert(3);
+// let testTree1 = createTestTree(1);
+testTree.insert(9);
+logPrettyTree(testTree);
 
 // Next up we need to write insert and delete functions that accepts a value to insert/delete
-// We can't do this by manipulating the original array, that's cheating. It has to act on the tree. 
+// We can't do this by manipulating the original array, that's cheating. It has to act on the tree.
