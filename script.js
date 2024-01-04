@@ -117,6 +117,23 @@ function logPrettyTree(tree) {
   prettyPrint(node, (prefix = ""), (isLeft = true));
 }
 
+function createRandomArray(length) {
+  let array = [];
+  for (let i = 0; i < length; i++) {
+    let newNumber = Math.floor(Math.random() * 100);
+    array.push(newNumber);
+  }
+  console.log(array);
+  return array;
+}
+
+function createTestTree(length) {
+  let array = createRandomArray(length);
+  let newTree = new Tree(array);
+  logPrettyTree(newTree);
+  return newTree;
+}
+
 // ******************************************************************************************************************************************************
 // Test data
 
@@ -133,4 +150,6 @@ const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 let testTree = new Tree(testArray5);
 // console.log(testTree);
 
-logPrettyTree(testTree);
+// logPrettyTree(testTree);
+
+createTestTree(50)
