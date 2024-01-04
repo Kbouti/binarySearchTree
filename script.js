@@ -1,6 +1,5 @@
-// Build a binary search tree
-// The buildTree function should take an array of numbers and turn it into a balanced binary tree full of Node objects appropriately placed.
-// This function should return the level-0 root node
+// ******************************************************************************************************************************************************
+// Classes:
 
 class Node {
   constructor(value) {
@@ -8,9 +7,9 @@ class Node {
     this.left = null;
     this.right = null;
   }
-  isLeafNode(){
-    if ((this.right == null) && (this.left == null)){
-        return true;
+  isLeafNode() {
+    if (this.right == null && this.left == null) {
+      return true;
     }
     return false;
   }
@@ -22,6 +21,9 @@ class Tree {
     this.root = buildTree(array);
   }
 }
+
+// ******************************************************************************************************************************************************
+// Helper Functions:
 
 function compareNumbers(a, b) {
   return a - b;
@@ -52,7 +54,6 @@ function formatArray(array) {
   newArray.sort(compareNumbers);
   return newArray;
 }
-
 
 function buildTree(array) {
   let formattedArray = formatArray(array);
@@ -97,6 +98,28 @@ function buildTree(array) {
   return rootNode;
 }
 
+const prettyPrint = (node, prefix = "", isLeft = true) => {
+  if (node === null) {
+    return;
+  }
+  if (node.right !== null) {
+    prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+  }
+  console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.value}`);
+  if (node.left !== null) {
+    prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+  }
+};
+
+function logPrettyTree(tree) {
+  // Uses prettyPrint function to neatly log the tree
+  let node = tree.root;
+  prettyPrint(node, (prefix = ""), (isLeft = true));
+}
+
+// ******************************************************************************************************************************************************
+// Test data
+
 let testArray1 = [6];
 let testArray2 = [6, 2];
 let testArray3 = [6, 2, 3];
@@ -104,35 +127,10 @@ let testArray4 = [6, 2, 22, 12, 54, 22];
 let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 
-// let testNode = buildTree(testArray7);
-
-// console.log(testNode);
-// console.log(testNode.right);
-// console.log(testNode.left);
-// console.log(testNode.value);
-
-// prettyPrint(testNode);
-
+// ******************************************************************************************************************************************************
+// Tests
 
 let testTree = new Tree(testArray5);
 // console.log(testTree);
 
-
-
-
-const prettyPrint = (node, prefix = "", isLeft = true) => {
-    if (node === null) {
-      return;
-    }
-    if (node.right !== null) {
-      prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
-    }
-    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.value}`);
-    if (node.left !== null) {
-      prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
-    }
-  };
-  
-
-// prettyPrint(testTree.root, prefix = "", isLeft = true);
-prettyPrint(testTree.root, prefix = "", isLeft = true);
+logPrettyTree(testTree);
