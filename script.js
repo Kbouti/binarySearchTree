@@ -140,6 +140,37 @@ class Node {
       return true;
     }
   }
+
+  insert(value) {
+    if (this.value === value) {
+      console.log(`This value already exists in the list, we do nothing.`);
+      return;
+    } else if (this.isLeafNode()) {
+      console.log(`found leaf node`);
+      if (this.value > value) {
+        console.log(
+          `Our value is lower, we need to create a new node left of this for our value`
+        );
+        let newNode = new Node(value);
+        this.left = newNode;
+      } else {
+        console.log(`Our value is higher, we need a new node to the right`);
+        let newNode = new Node(value);
+        this.right = newNode;
+      }
+    } else if (this.left !== null && this.right !== null) {
+      if (this.value > value) {
+        this.left.insert(value);
+        return;
+      }
+      this.right.insert(value);
+      return;
+    } else if (this.hasOnlyRight()) {
+      this.right.insert(value);
+    } else {
+      this.left.insert(value);
+    }
+  }
 }
 
 class Tree {
@@ -150,37 +181,7 @@ class Tree {
 
   insert(value) {
     let root = this.root;
-    let rootValue = root.value;
-    let isLeaf = root.isLeafNode();
-    console.log(`rootvalue: ${rootValue}`);
-    console.log(`isLeaf: ${isLeaf}`);
-
-    let currentNode = root;
-
-    if (currentNode.value === value) {
-      console.log(`This value already exists in the list, we do nothing.`);
-      return;
-    } else if (currentNode.isLeafNode()) {
-      console.log(`found leaf node`);
-      if (currentNode.value > value) {
-        console.log(
-          `Our value is lower, we need to create a new node left of this for our value`
-        );
-        let newNode = new Node(value);
-        currentNode.left = newNode;
-      } else {
-        console.log(`Our value is higher, we need a new node to the right`);
-        let newNode = new Node(value);
-        currentNode.right = newNode;
-      }
-    } else if (currentNode.hasOnlyRight()) {
-      console.log(`advancing currentNode to right`);
-      currentNode = currentNode.right;
-    } else {
-      console.log(`advancing currentNode to left`);
-      currentNode = currentNode.left;
-    }
-    // Ok we've established we need to move down the tree. There is at least one more node we need to compare. How do we choose it and compare
+    root.insert(value);
   }
 
   delete(value) {}
@@ -194,7 +195,8 @@ let testTree = new Tree(testArray2);
 
 // createTestTree(16)
 // let testTree1 = createTestTree(1);
-testTree.insert(9);
+testTree.insert(1);
+// testTree.insert(3);
 logPrettyTree(testTree);
 
 // Next up we need to write insert and delete functions that accepts a value to insert/delete
