@@ -140,37 +140,29 @@ class Node {
       return true;
     }
   }
-
   insert(value) {
     if (this.value === value) {
       console.log(`This value already exists in the list, we do nothing.`);
       return;
-    } else if (this.isLeafNode()) {
-      console.log(`found leaf node`);
-      if (this.value > value) {
-        console.log(
-          `Our value is lower, we need to create a new node left of this for our value`
-        );
-        let newNode = new Node(value);
-        this.left = newNode;
-      } else {
-        console.log(`Our value is higher, we need a new node to the right`);
-        let newNode = new Node(value);
-        this.right = newNode;
-      }
-    } else if (this.left !== null && this.right !== null) {
-      if (this.value > value) {
+    } else if (this.value > value){
+        if (this.left == null){
+            let newNode = new Node(value);
+            this.left = newNode;
+            return;
+        } 
         this.left.insert(value);
         return;
-      }
-      this.right.insert(value);
-      return;
-    } else if (this.hasOnlyRight()) {
-      this.right.insert(value);
-    } else {
-      this.left.insert(value);
+    } else if (this.value < value){
+        if (this.right == null){
+            let newNode = new Node(value);
+            this.right = newNode;
+            return;
+        } 
+        this.right.insert(value);
+        return;
     }
   }
+
 }
 
 class Tree {
@@ -190,14 +182,19 @@ class Tree {
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray2);
+let testTree = new Tree(testArray5);
 // console.log(testTree);
 
 // createTestTree(16)
-// let testTree1 = createTestTree(1);
+
+// let testTree1 = createTestTree(8);
+
 testTree.insert(1);
 // testTree.insert(3);
+testTree.insert(53);
+// testTree.insert(535);
+
 logPrettyTree(testTree);
 
-// Next up we need to write insert and delete functions that accepts a value to insert/delete
-// We can't do this by manipulating the original array, that's cheating. It has to act on the tree.
+// Ok, I'm not creating new nodes in the right place. I'm inserting them at the end of the tree no matter what, so I end up with an unbalanced tree. 
+// If I want to always have a balanced tree - I need insert a new node in the middle of the tree. 
