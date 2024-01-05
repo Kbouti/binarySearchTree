@@ -119,6 +119,7 @@ let testArray3 = [6, 2, 3];
 let testArray4 = [6, 2, 22, 12, 54, 22];
 let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
+let testArray8 = [20,30,32,34,36,40,50,60, 85, 80, 75, 70, 65, 70]
 
 // ******************************************************************************************************************************************************
 // Classes:
@@ -140,6 +141,12 @@ class Node {
       return true;
     }
   }
+  hasOnlyLeft() {
+    if (this.left !== null && this.right == null) {
+      return true;
+    }
+  }
+
   insert(value) {
     if (this.value === value) {
       console.log(`This value already exists in the list, we do nothing.`);
@@ -162,6 +169,19 @@ class Node {
         return;
     }
   }
+  delete(value){
+    if (this.value == value){
+        // Code to execute to delete the node
+        // Must take into acount whether the node is a leaf node or not
+    }
+    if (this.value !== value && this.isLeafNode()){
+        console.log(`value ${value} not found`);
+    } else if (this.value !== value && this.hasOnlyRight()){
+        this.right.delete(value);
+    } else if (this.value !== value && this.hasOnlyLeft()){
+        this.left.delete(value);
+    }
+  }
 
 }
 
@@ -176,25 +196,27 @@ class Tree {
     root.insert(value);
   }
 
-  delete(value) {}
+  delete(value) {
+    this.root.delete(value);
+  }
 }
 
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray5);
+let testTree = new Tree(testArray1);
 // console.log(testTree);
 
 // createTestTree(16)
 
 // let testTree1 = createTestTree(8);
 
-testTree.insert(1);
+// testTree.insert(1);
+// testTree.insert(5);
+// testTree.insert(7);
+// testTree.insert(1);
 // testTree.insert(3);
-testTree.insert(53);
-// testTree.insert(535);
-
+// testTree.insert(2);
+testTree.delete(62)
 logPrettyTree(testTree);
 
-// Ok, I'm not creating new nodes in the right place. I'm inserting them at the end of the tree no matter what, so I end up with an unbalanced tree. 
-// If I want to always have a balanced tree - I need insert a new node in the middle of the tree. 
