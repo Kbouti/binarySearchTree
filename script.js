@@ -146,11 +146,13 @@ class Node {
     if (this.right !== null && this.left == null) {
       return true;
     }
+    return false;
   }
   hasOnlyLeft() {
     if (this.left !== null && this.right == null) {
       return true;
     }
+    return false;
   }
 
   insert(value) {
@@ -182,6 +184,11 @@ class Node {
     if (this.value == value) {
       console.log(`found yer node! Now we gotta delete it`);
       console.log(`isRootNode: ${isRootNode}`);
+      console.log(`hasTwoNodes: ${this.hasTwoNodes()}`);
+      console.log(`hasOnlyLeft: ${this.hasOnlyLeft()}`);
+      console.log(`hasOnlyRight: ${this.hasOnlyRight()}`);
+      console.log(`isLeafNode: ${this.isLeafNode()}`);
+  
       // Code to execute to delete the node
       // Must take into acount whether the node is a leaf node or not
 
@@ -247,5 +254,5 @@ let testTree = new Tree(testArray8);
 // testTree.insert(1);
 // testTree.insert(3);
 // testTree.insert(2);
-testTree.delete(8);
+testTree.delete(65);
 logPrettyTree(testTree);
