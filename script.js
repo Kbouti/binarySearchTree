@@ -177,24 +177,29 @@ class Node {
       return;
     }
   }
-  delete(value, isRootNode) {
+  delete(tree, value, isRootNode) {
     console.log(`delete function triggered`);
     console.log(`isRootNode: ${isRootNode}`);
 
     if (this.value == value) {
+      // Code to execute to delete the node
+      // Must take into acount whether the node is a leaf node or not
+      // How do we reference the previous node?
+      // If isRootNode is true there is no node before it
+
       console.log(`found yer node! Now we gotta delete it`);
       console.log(`isRootNode: ${isRootNode}`);
       console.log(`hasTwoNodes: ${this.hasTwoNodes()}`);
       console.log(`hasOnlyLeft: ${this.hasOnlyLeft()}`);
       console.log(`hasOnlyRight: ${this.hasOnlyRight()}`);
       console.log(`isLeafNode: ${this.isLeafNode()}`);
-  
-      // Code to execute to delete the node
-      // Must take into acount whether the node is a leaf node or not
 
-      // How do we reference the previous node?
+        if (isRootNode === true && this.isLeafNode()) {
+            console.log(`node to delete is the one and only node in the list`);
+            console.log(tree);
+            tree.root = null
+        }
 
-      // If isRootNode is true there is no node before it
 
       return;
     }
@@ -209,12 +214,12 @@ class Node {
     } else {
       if (this.value > value) {
         console.log(`this.value > value, checking nodes to the left`);
-        this.left.delete(value, isRootNode);
+        this.left.delete(tree, value, isRootNode);
         return;
       } else if (this.value < value) {
         console.log(`this.value < value, checking nodes to the right`);
         console.log(this.right);
-        this.right.delete(value, isRootNode);
+        this.right.delete(tree, value, isRootNode);
         return;
       }
     }
@@ -233,15 +238,16 @@ class Tree {
   }
 
   delete(value) {
+    let tree = this
     let isRootNode = true;
-    this.root.delete(value, isRootNode);
+    this.root.delete(tree, value, isRootNode);
   }
 }
 
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray8);
+let testTree = new Tree(testArray1);
 // console.log(testTree);
 
 // createTestTree(16)
@@ -254,5 +260,5 @@ let testTree = new Tree(testArray8);
 // testTree.insert(1);
 // testTree.insert(3);
 // testTree.insert(2);
-testTree.delete(65);
+testTree.delete(5);
 logPrettyTree(testTree);
