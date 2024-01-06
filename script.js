@@ -232,19 +232,19 @@ class Node {
         let nextHighest = this.right;
         let nextHighestParent = this;
         while (nextHighest.left !== null) {
-            nextHighestParent = nextHighest;
+          nextHighestParent = nextHighest;
           nextHighest = nextHighest.left;
         }
-this.value = nextHighest.value;
-this.right = nextHighestParent;
+        nextHighestParent.left = null;
+        this.value = nextHighest.value;
+        this.right = nextHighestParent;
 
+        // ***********************************************************************************************
+        // This seems to work when we try to remove the root node, but otherwise we're getting a too much recursion error
 
-// ***********************************************************************************************
-// We're somehow screwing up the recursive call to remove the leaf node 
+        // nextHighest.delete(tree, nextHighest.value, nextHighest);
 
-nextHighest.delete(tree, nextHighest.value, nextHighest);
-
-return;
+        return;
       }
       return;
     }
@@ -315,11 +315,11 @@ let testTree = new Tree(testArray7);
 // testTree.insert(2);
 // testTree.delete(6);
 // testTree.insert(4);
-// testTree.insert(33);
+testTree.insert(33);
 // testTree.delete(4);
 // testTree.delete(3);
 // testTree.delete(5);
 // testTree.delete(1);
-// testTree.delete(6);
-testTree.delete(4);
+// testTree.delete(4);
+// testTree.delete(2);
 logPrettyTree(testTree);
