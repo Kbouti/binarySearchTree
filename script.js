@@ -181,27 +181,17 @@ class Node {
     console.log(`delete function triggered`);
     console.log(`isRootNode: ${isRootNode}`);
 
-    if (this.value == value) {
-      // Code to execute to delete the node
-      // Must take into acount whether the node is a leaf node or not
-      // How do we reference the previous node?
-      // If isRootNode is true there is no node before it
+// We can change "isRootNode" to just asking if previousNode is null
 
-      console.log(`found yer node! Now we gotta delete it`);
-      console.log(`isRootNode: ${isRootNode}`);
-      console.log(`hasTwoNodes: ${this.hasTwoNodes()}`);
-      console.log(`hasOnlyLeft: ${this.hasOnlyLeft()}`);
-      console.log(`hasOnlyRight: ${this.hasOnlyRight()}`);
-      console.log(`isLeafNode: ${this.isLeafNode()}`);
+
+    if (this.value == value) {
 
       if (this.isLeafNode()) {
         console.log(`deleting leaf node`);
         if (previousNode == null) {
-          console.log(`node to delete is the one and only node in the list`);
           tree.root = null;
           return;
         } else {
-          console.log(`target node is a leaf but not the root`);
           console.log(`previousNode.value: ${previousNode.value}`);
           if (previousNode.value > value) {
             previousNode.left = null;
@@ -212,6 +202,7 @@ class Node {
           }
         }
       } else if (this.hasOnlyLeft()) {
+        console.log(`deleting node with only left children`);
         if (previousNode.value > value) {
           previousNode.left = this.left;
           return;
@@ -220,7 +211,7 @@ class Node {
           return;
         }
       } else if (this.hasOnlyRight()) {
-
+        console.log(`deleting node with only right children`);
         if (previousNode.value > value) {
             previousNode.left = this.right;
             return;
@@ -228,10 +219,9 @@ class Node {
             previousNode.right = this.right;
             return;
           }
-  
-
 
       } else if (this.hasTwoNodes()) {
+        console.log(`deleting node with two children`)
       }
 
       return;
