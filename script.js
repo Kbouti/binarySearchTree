@@ -242,31 +242,25 @@ class Node {
     }
   }
 
-  find(value){
+  find(value) {
+    let targetNode = null;
     console.log(`looking for value: ${value}`);
-    if (this.value === value){
-        return this;
-    }
-    else if (this.value > value){
-        if (this.left == null){
-            console.log(`couldn't find the value you're looking for`);
-            return;
-        }
-        this.left.find(value);
-        return;
+    if (this.value === value) {
+      console.log(`found it!`);
+      targetNode = this;
+    } else if (this.value > value) {
+      if (this.left == null) {
+        console.log(`couldn't find the value you're looking for`);
+      }
+      targetNode = this.left.find(value);
     } else {
-        if (this.right == null){
-            console.log(`couldn't find the value you're looking for`);
-            return;
-        }
-        this.right.find(value);
-        return;
+      if (this.right == null) {
+        console.log(`couldn't find the value you're looking for`);
+      }
+      targetNode = this.right.find(value);
     }
+    return targetNode;
   }
-
-
-
-
 }
 
 class Tree {
@@ -292,10 +286,9 @@ class Tree {
     return;
   }
 
-  find(value){
+  find(value) {
     // Takes a value and returns the node with the given value
-
-    this.root.find(value)
+    return this.root.find(value);
   }
 }
 
@@ -310,7 +303,6 @@ let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 
-
 // ******************************************************************************************************************************************************
 // Tests
 
@@ -323,8 +315,9 @@ let testTree = new Tree(testArray8);
 
 // testTree.insert(1);
 // testTree.delete(50255);
-testTree.find(30);
+// testTree.find(30);
 
 logPrettyTree(testTree);
 
-
+let numas = testTree.find(4560);
+console.log(numas);
