@@ -109,18 +109,6 @@ function createTestTree(length) {
   logPrettyTree(newTree);
   return newTree;
 }
-
-// ******************************************************************************************************************************************************
-// Test data
-
-let testArray1 = [6];
-let testArray2 = [6, 2];
-let testArray3 = [6, 2, 3];
-let testArray4 = [6, 2, 22, 12, 54, 22];
-let testArray5 = [12, 3, 54, 109, 54, 3, 423];
-const testArray7 = [7, 6, 5, 4, 3, 2, 1];
-let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
-
 // ******************************************************************************************************************************************************
 // Classes:
 
@@ -253,6 +241,32 @@ class Node {
       }
     }
   }
+
+  find(value){
+    console.log(`looking for value: ${value}`);
+    if (this.value === value){
+        return this;
+    }
+    else if (this.value > value){
+        if (this.left == null){
+            console.log(`couldn't find the value you're looking for`);
+            return;
+        }
+        this.left.find(value);
+        return;
+    } else {
+        if (this.right == null){
+            console.log(`couldn't find the value you're looking for`);
+            return;
+        }
+        this.right.find(value);
+        return;
+    }
+  }
+
+
+
+
 }
 
 class Tree {
@@ -277,7 +291,25 @@ class Tree {
     this.root.delete(tree, value, previousNode);
     return;
   }
+
+  find(value){
+    // Takes a value and returns the node with the given value
+
+    this.root.find(value)
+  }
 }
+
+// ******************************************************************************************************************************************************
+// Test data
+
+let testArray1 = [6];
+let testArray2 = [6, 2];
+let testArray3 = [6, 2, 3];
+let testArray4 = [6, 2, 22, 12, 54, 22];
+let testArray5 = [12, 3, 54, 109, 54, 3, 423];
+const testArray7 = [7, 6, 5, 4, 3, 2, 1];
+let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
+
 
 // ******************************************************************************************************************************************************
 // Tests
@@ -290,19 +322,9 @@ let testTree = new Tree(testArray8);
 // let testTree1 = createTestTree(8);
 
 // testTree.insert(1);
-// testTree.insert(5);
-// testTree.insert(7);
-// testTree.insert(1);
-// testTree.insert(3);
-// testTree.insert(2);
-// testTree.delete(6);
-// testTree.insert(4);
-// testTree.insert(33);
-// testTree.delete(3);
-// testTree.delete(5);
-// testTree.delete(1);
-// testTree.delete(6);
-// testTree.delete(2);
-testTree.delete(50);
+// testTree.delete(50255);
+testTree.find(30);
 
 logPrettyTree(testTree);
+
+
