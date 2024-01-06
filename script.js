@@ -177,7 +177,7 @@ class Node {
       return;
     }
   }
-  delete(tree, value, isRootNode) {
+  delete(tree, value, isRootNode, previousNode) {
     console.log(`delete function triggered`);
     console.log(`isRootNode: ${isRootNode}`);
 
@@ -194,38 +194,62 @@ class Node {
       console.log(`hasOnlyRight: ${this.hasOnlyRight()}`);
       console.log(`isLeafNode: ${this.isLeafNode()}`);
 
-        if (isRootNode  && this.isLeafNode()) {
-            console.log(`node to delete is the one and only node in the list`);
-            console.log(tree);
-            tree.root = null
-        } else if (isRootNode && this.hasTwoNodes()){
-            console.log(`node to delete is the root node and has two child nodes`);
-        } else if (isRootNode && this.hasOnlyLeft()){
-            console.log(`nose to delete is rootnode and has only left`)
-        } else if (isRootNode && this.hasOnlyRight()){
-            console.log(`nose to delete is rootnode and has only right`)
+      if (this.isLeafNode()) {
+        console.log(`deleting leaf node`);
+        if (previousNode == null) {
+          console.log(`node to delete is the one and only node in the list`);
+          tree.root = null;
+          return;
+        } else {
+          console.log(`target node is a leaf but not the root`);
+          console.log(`previousNode.value: ${previousNode.value}`);
+          if (previousNode.value > value) {
+            previousNode.left = null;
+            return;
+          } else {
+            previousNode.right = null;
+            return;
+          }
         }
+      }
 
+      else if (this.hasOnlyLeft()){
+
+      }
+
+      else if (this.hasOnlyRight()){
+        
+      }
+
+      else if (this.hasTwoNodes()){
+        
+      }
 
       return;
     }
-    isRootNode = false;
+
+    if (isRootNode) {
+      isRootNode = false;
+    }
+
+    previousNode = this;
+
     if (this.value !== value && this.isLeafNode()) {
       console.log(`value ${value} not found`);
       return;
     } else if (this.value !== value && this.hasOnlyRight()) {
-      this.right.delete(value);
+      this.right.delete(tree, value, isRootNode, previousNode);
     } else if (this.value !== value && this.hasOnlyLeft()) {
-      this.left.delete(value);
+      this.left.delete(tree, value, isRootNode, previousNode);
     } else {
       if (this.value > value) {
         console.log(`this.value > value, checking nodes to the left`);
-        this.left.delete(tree, value, isRootNode);
+        this.left.delete(tree, value, isRootNode, previousNode);
         return;
       } else if (this.value < value) {
         console.log(`this.value < value, checking nodes to the right`);
         console.log(this.right);
-        this.right.delete(tree, value, isRootNode);
+        this.right.delete(tree, value, isRootNode, previousNode);
         return;
       }
     }
@@ -240,18 +264,19 @@ class Tree {
 
   insert(value) {
     let root = this.root;
-    if (root == null){
-        this.root = new Node(value);
-        return;
+    if (root == null) {
+      this.root = new Node(value);
+      return;
     }
     root.insert(value);
     return;
   }
 
   delete(value) {
-    let tree = this
+    let previousNode = null;
+    let tree = this;
     let isRootNode = true;
-    this.root.delete(tree, value, isRootNode);
+    this.root.delete(tree, value, isRootNode, previousNode);
     return;
   }
 }
@@ -270,10 +295,12 @@ let testTree = new Tree(testArray1);
 // testTree.insert(5);
 // testTree.insert(7);
 // testTree.insert(1);
-// testTree.insert(3);
+testTree.insert(3);
 // testTree.insert(2);
 testTree.delete(6);
 testTree.insert(4);
-testTree.insert(33);
+// testTree.insert(33);
 testTree.delete(4);
+testTree.delete(3);
+testTree.delete(6);
 logPrettyTree(testTree);
