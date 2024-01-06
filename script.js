@@ -234,13 +234,19 @@ class Tree {
 
   insert(value) {
     let root = this.root;
+    if (root == null){
+        this.root = new Node(value);
+        return;
+    }
     root.insert(value);
+    return;
   }
 
   delete(value) {
     let tree = this
     let isRootNode = true;
     this.root.delete(tree, value, isRootNode);
+    return;
   }
 }
 
@@ -260,5 +266,7 @@ let testTree = new Tree(testArray1);
 // testTree.insert(1);
 // testTree.insert(3);
 // testTree.insert(2);
-testTree.delete(5);
+testTree.delete(6);
+testTree.insert(4);
+testTree.insert(45);
 logPrettyTree(testTree);
