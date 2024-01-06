@@ -194,10 +194,16 @@ class Node {
       console.log(`hasOnlyRight: ${this.hasOnlyRight()}`);
       console.log(`isLeafNode: ${this.isLeafNode()}`);
 
-        if (isRootNode === true && this.isLeafNode()) {
+        if (isRootNode  && this.isLeafNode()) {
             console.log(`node to delete is the one and only node in the list`);
             console.log(tree);
             tree.root = null
+        } else if (isRootNode && this.hasTwoNodes()){
+            console.log(`node to delete is the root node and has two child nodes`);
+        } else if (isRootNode && this.hasOnlyLeft()){
+            console.log(`nose to delete is rootnode and has only left`)
+        } else if (isRootNode && this.hasOnlyRight()){
+            console.log(`nose to delete is rootnode and has only right`)
         }
 
 
@@ -268,5 +274,6 @@ let testTree = new Tree(testArray1);
 // testTree.insert(2);
 testTree.delete(6);
 testTree.insert(4);
-testTree.insert(45);
+testTree.insert(33);
+testTree.delete(4);
 logPrettyTree(testTree);
