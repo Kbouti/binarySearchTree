@@ -249,7 +249,7 @@ class Node {
       console.log(`found it!`);
       targetNode = this;
     } 
-    else if (this.isLeafNode){
+    else if (this.isLeafNode()){
         console.log(`couldn't find the value you're looking for`);
     }
     else if (this.value > value) {
@@ -323,5 +323,6 @@ let testTree = new Tree(testArray8);
 
 logPrettyTree(testTree);
 
-let numas = testTree.find(4560);
+let numas = testTree.find(32);
 console.log(numas);
+
