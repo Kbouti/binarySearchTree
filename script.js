@@ -181,7 +181,7 @@ class Node {
   delete(tree, value, previousNode) {
     // console.log(`delete function triggered`);
     if (this.value == value) {
-    console.log(`Target value found`);
+      console.log(`Target value found`);
       if (this.isLeafNode()) {
         console.log(`deleting leaf node`);
         if (previousNode == null) {
@@ -199,9 +199,9 @@ class Node {
         }
       } else if (this.hasOnlyLeft()) {
         console.log(`deleting node with only left children`);
-        if (previousNode == null ){
-            tree.root = this.left;
-            return;
+        if (previousNode == null) {
+          tree.root = this.left;
+          return;
         }
         if (previousNode.value > value) {
           previousNode.left = this.left;
@@ -212,27 +212,39 @@ class Node {
         }
       } else if (this.hasOnlyRight()) {
         console.log(`deleting node with only right children`);
-        if (previousNode == null ){
-            tree.root  = this.right;
-            return
+        if (previousNode == null) {
+          tree.root = this.right;
+          return;
         }
         if (previousNode.value > value) {
-            previousNode.left = this.right;
-            return;
-          } else {
-            previousNode.right = this.right;
-            return;
-          }
-      } else if (this.hasTwoNodes()) {
-        console.log(`deleting node with two children`)
-        if (previousNode == null ){
-            // tree.root = 
+          previousNode.left = this.right;
+          return;
+        } else {
+          previousNode.right = this.right;
+          return;
         }
+      } else if (this.hasTwoNodes()) {
+        console.log(`deleting node with two children`);
 
-// This is where we need work
+        // let leftChild = this.left;
+        // let rightChild = this.right;
+
+        let nextHighest = this.right;
+        let nextHighestParent = this;
+        while (nextHighest.left !== null) {
+            nextHighestParent = nextHighest;
+          nextHighest = nextHighest.left;
+        }
+this.value = nextHighest.value;
+this.right = nextHighestParent;
 
 
+// ***********************************************************************************************
+// We're somehow screwing up the recursive call to remove the leaf node 
 
+nextHighest.delete(tree, nextHighest.value, nextHighest);
+
+return;
       }
       return;
     }
@@ -288,7 +300,7 @@ class Tree {
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray5);
+let testTree = new Tree(testArray7);
 // console.log(testTree);
 
 // createTestTree(16)
@@ -308,6 +320,6 @@ let testTree = new Tree(testArray5);
 // testTree.delete(3);
 // testTree.delete(5);
 // testTree.delete(1);
-// testTree.delete(3);
-testTree.delete(54);
+// testTree.delete(6);
+testTree.delete(4);
 logPrettyTree(testTree);
