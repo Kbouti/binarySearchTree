@@ -231,18 +231,23 @@ class Node {
 
         let nextHighest = this.right;
         let nextHighestParent = this;
+
+        console.log(`nextHighest.value: ${nextHighest.value}`);
+        console.log(`nextHighestParent.value: ${nextHighestParent.value} `);
+
         while (nextHighest.left !== null) {
           nextHighestParent = nextHighest;
           nextHighest = nextHighest.left;
         }
-        nextHighestParent.left = null;
+
+        // so right now nextHighest is the next highest node 
+        console.log(`nextHighest.value: ${nextHighest.value}`);
+        console.log(`nextHighestParent.value: ${nextHighestParent.value} `);
+
+        // nextHighestParent.left = null;
         this.value = nextHighest.value;
-        this.right = nextHighestParent;
-
-        // ***********************************************************************************************
-        // This seems to work when we try to remove the root node, but otherwise we're getting a too much recursion error
-
-        // nextHighest.delete(tree, nextHighest.value, nextHighest);
+        // this.right = nextHighestParent;
+        nextHighest.delete(tree, nextHighest.value, nextHighestParent);
 
         return;
       }
@@ -316,10 +321,11 @@ let testTree = new Tree(testArray7);
 // testTree.delete(6);
 // testTree.insert(4);
 testTree.insert(33);
-// testTree.delete(4);
 // testTree.delete(3);
 // testTree.delete(5);
 // testTree.delete(1);
-// testTree.delete(4);
-// testTree.delete(2);
+testTree.delete(6);
+testTree.delete(2);
+testTree.delete(4);
+
 logPrettyTree(testTree);
