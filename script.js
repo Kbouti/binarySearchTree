@@ -136,6 +136,12 @@ class Node {
     }
     return false;
   }
+  hasTwoNodes() {
+    if (this.right !== null && this.left !== null) {
+      return true;
+    }
+    return false;
+  }
   hasOnlyRight() {
     if (this.right !== null && this.left == null) {
       return true;
@@ -169,13 +175,23 @@ class Node {
       return;
     }
   }
-  delete(value) {
+  delete(value, isRootNode) {
     console.log(`delete function triggered`);
+    console.log(`isRootNode: ${isRootNode}`);
+
     if (this.value == value) {
-        console.log(`found yer node! Now we gotta delete it`)
+      console.log(`found yer node! Now we gotta delete it`);
+      console.log(`isRootNode: ${isRootNode}`);
       // Code to execute to delete the node
       // Must take into acount whether the node is a leaf node or not
+
+      // How do we reference the previous node?
+
+      // If isRootNode is true there is no node before it
+
+      return;
     }
+    isRootNode = false;
     if (this.value !== value && this.isLeafNode()) {
       console.log(`value ${value} not found`);
       return;
@@ -185,13 +201,13 @@ class Node {
       this.left.delete(value);
     } else {
       if (this.value > value) {
-        console.log(`this.value > value, checking nodes to the left`)
-        this.left.delete(value);
+        console.log(`this.value > value, checking nodes to the left`);
+        this.left.delete(value, isRootNode);
         return;
       } else if (this.value < value) {
-        console.log(`this.value < value, checking nodes to the right`)
-        console.log(this.right)
-        this.right.delete(value);
+        console.log(`this.value < value, checking nodes to the right`);
+        console.log(this.right);
+        this.right.delete(value, isRootNode);
         return;
       }
     }
@@ -210,7 +226,8 @@ class Tree {
   }
 
   delete(value) {
-    this.root.delete(value);
+    let isRootNode = true;
+    this.root.delete(value, isRootNode);
   }
 }
 
