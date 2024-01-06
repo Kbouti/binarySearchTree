@@ -119,7 +119,7 @@ let testArray3 = [6, 2, 3];
 let testArray4 = [6, 2, 22, 12, 54, 22];
 let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
-let testArray8 = [20,30,32,34,36,40,50,60, 85, 80, 75, 70, 65, 70]
+let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 
 // ******************************************************************************************************************************************************
 // Classes:
@@ -151,38 +151,51 @@ class Node {
     if (this.value === value) {
       console.log(`This value already exists in the list, we do nothing.`);
       return;
-    } else if (this.value > value){
-        if (this.left == null){
-            let newNode = new Node(value);
-            this.left = newNode;
-            return;
-        } 
-        this.left.insert(value);
+    } else if (this.value > value) {
+      if (this.left == null) {
+        let newNode = new Node(value);
+        this.left = newNode;
         return;
-    } else if (this.value < value){
-        if (this.right == null){
-            let newNode = new Node(value);
-            this.right = newNode;
-            return;
-        } 
-        this.right.insert(value);
+      }
+      this.left.insert(value);
+      return;
+    } else if (this.value < value) {
+      if (this.right == null) {
+        let newNode = new Node(value);
+        this.right = newNode;
         return;
+      }
+      this.right.insert(value);
+      return;
     }
   }
-  delete(value){
-    if (this.value == value){
-        // Code to execute to delete the node
-        // Must take into acount whether the node is a leaf node or not
+  delete(value) {
+    console.log(`delete function triggered`);
+    if (this.value == value) {
+        console.log(`found yer node! Now we gotta delete it`)
+      // Code to execute to delete the node
+      // Must take into acount whether the node is a leaf node or not
     }
-    if (this.value !== value && this.isLeafNode()){
-        console.log(`value ${value} not found`);
-    } else if (this.value !== value && this.hasOnlyRight()){
-        this.right.delete(value);
-    } else if (this.value !== value && this.hasOnlyLeft()){
+    if (this.value !== value && this.isLeafNode()) {
+      console.log(`value ${value} not found`);
+      return;
+    } else if (this.value !== value && this.hasOnlyRight()) {
+      this.right.delete(value);
+    } else if (this.value !== value && this.hasOnlyLeft()) {
+      this.left.delete(value);
+    } else {
+      if (this.value > value) {
+        console.log(`this.value > value, checking nodes to the left`)
         this.left.delete(value);
+        return;
+      } else if (this.value < value) {
+        console.log(`this.value < value, checking nodes to the right`)
+        console.log(this.right)
+        this.right.delete(value);
+        return;
+      }
     }
   }
-
 }
 
 class Tree {
@@ -204,7 +217,7 @@ class Tree {
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray1);
+let testTree = new Tree(testArray8);
 // console.log(testTree);
 
 // createTestTree(16)
@@ -217,6 +230,5 @@ let testTree = new Tree(testArray1);
 // testTree.insert(1);
 // testTree.insert(3);
 // testTree.insert(2);
-testTree.delete(62)
+testTree.delete(8);
 logPrettyTree(testTree);
-
