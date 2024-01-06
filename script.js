@@ -179,16 +179,14 @@ class Node {
   }
 
   delete(tree, value, previousNode) {
-    // console.log(`delete function triggered`);
+    console.log(`deleting value: ${value}`);
     if (this.value == value) {
-      console.log(`Target value found`);
       if (this.isLeafNode()) {
-        console.log(`deleting leaf node`);
+        console.log(`target is a leaf node`);
         if (previousNode == null) {
           tree.root = null;
           return;
         } else {
-          console.log(`previousNode.value: ${previousNode.value}`);
           if (previousNode.value > value) {
             previousNode.left = null;
             return;
@@ -198,7 +196,7 @@ class Node {
           }
         }
       } else if (this.hasOnlyLeft()) {
-        console.log(`deleting node with only left children`);
+        console.log(`target has only left children`);
         if (previousNode == null) {
           tree.root = this.left;
           return;
@@ -211,7 +209,7 @@ class Node {
           return;
         }
       } else if (this.hasOnlyRight()) {
-        console.log(`deleting node with only right children`);
+        console.log(`target has only right children`);
         if (previousNode == null) {
           tree.root = this.right;
           return;
@@ -224,38 +222,20 @@ class Node {
           return;
         }
       } else if (this.hasTwoNodes()) {
-        console.log(`deleting node with two children`);
-
-        // let leftChild = this.left;
-        // let rightChild = this.right;
-
+        console.log(`target has two children`);
         let nextHighest = this.right;
         let nextHighestParent = this;
-
-        console.log(`nextHighest.value: ${nextHighest.value}`);
-        console.log(`nextHighestParent.value: ${nextHighestParent.value} `);
-
         while (nextHighest.left !== null) {
           nextHighestParent = nextHighest;
           nextHighest = nextHighest.left;
         }
-
-        // so right now nextHighest is the next highest node 
-        console.log(`nextHighest.value: ${nextHighest.value}`);
-        console.log(`nextHighestParent.value: ${nextHighestParent.value} `);
-
-        // nextHighestParent.left = null;
         this.value = nextHighest.value;
-        // this.right = nextHighestParent;
         nextHighest.delete(tree, nextHighest.value, nextHighestParent);
-
         return;
       }
       return;
     }
-
     previousNode = this;
-
     if (this.value !== value && this.isLeafNode()) {
       console.log(`value ${value} not found`);
       return;
@@ -265,12 +245,9 @@ class Node {
       this.left.delete(tree, value, previousNode);
     } else {
       if (this.value > value) {
-        console.log(`this.value > value, checking nodes to the left`);
         this.left.delete(tree, value, previousNode);
         return;
       } else if (this.value < value) {
-        console.log(`this.value < value, checking nodes to the right`);
-        console.log(this.right);
         this.right.delete(tree, value, previousNode);
         return;
       }
@@ -305,7 +282,7 @@ class Tree {
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray7);
+let testTree = new Tree(testArray8);
 // console.log(testTree);
 
 // createTestTree(16)
@@ -320,12 +297,12 @@ let testTree = new Tree(testArray7);
 // testTree.insert(2);
 // testTree.delete(6);
 // testTree.insert(4);
-testTree.insert(33);
+// testTree.insert(33);
 // testTree.delete(3);
 // testTree.delete(5);
 // testTree.delete(1);
-testTree.delete(6);
-testTree.delete(2);
-testTree.delete(4);
+// testTree.delete(6);
+// testTree.delete(2);
+testTree.delete(50);
 
 logPrettyTree(testTree);
