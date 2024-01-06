@@ -248,7 +248,11 @@ class Node {
     if (this.value === value) {
       console.log(`found it!`);
       targetNode = this;
-    } else if (this.value > value) {
+    } 
+    else if (this.isLeafNode){
+        console.log(`couldn't find the value you're looking for`);
+    }
+    else if (this.value > value) {
       if (this.left == null) {
         console.log(`couldn't find the value you're looking for`);
       }
