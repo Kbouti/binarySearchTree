@@ -211,18 +211,27 @@ class Node {
             return;
           }
         }
-      }
+      } else if (this.hasOnlyLeft()) {
+        if (previousNode.value > value) {
+          previousNode.left = this.left;
+          return;
+        } else {
+          previousNode.right = this.left;
+          return;
+        }
+      } else if (this.hasOnlyRight()) {
 
-      else if (this.hasOnlyLeft()){
+        if (previousNode.value > value) {
+            previousNode.left = this.right;
+            return;
+          } else {
+            previousNode.right = this.right;
+            return;
+          }
+  
 
-      }
 
-      else if (this.hasOnlyRight()){
-        
-      }
-
-      else if (this.hasTwoNodes()){
-        
+      } else if (this.hasTwoNodes()) {
       }
 
       return;
@@ -291,16 +300,17 @@ let testTree = new Tree(testArray1);
 
 // let testTree1 = createTestTree(8);
 
-// testTree.insert(1);
-// testTree.insert(5);
-// testTree.insert(7);
+testTree.insert(1);
+testTree.insert(5);
+testTree.insert(7);
 // testTree.insert(1);
 testTree.insert(3);
 // testTree.insert(2);
-testTree.delete(6);
-testTree.insert(4);
+// testTree.delete(6);
+// testTree.insert(4);
 // testTree.insert(33);
-testTree.delete(4);
-testTree.delete(3);
-testTree.delete(6);
+// testTree.delete(4);
+// testTree.delete(3);
+testTree.delete(5);
+testTree.delete(1);
 logPrettyTree(testTree);
