@@ -294,6 +294,14 @@ class Tree {
     // Takes a value and returns the node with the given value
     return this.root.find(value);
   }
+
+// Level order starts at the root node and reads every value in each level, starting left and moving right on each level
+
+levelOrder(callback){
+    // Takes an option callback function and appliese the function to each node in level order
+    // If no callback is provided, it will return an array of all of the values 
+}
+
 }
 
 // ******************************************************************************************************************************************************
