@@ -269,17 +269,31 @@ class Node {
   }
 
   inOrder(array) {
-    let currentNode = this;
     console.log(`calling inOrder on ${this.value}`);
-    if (currentNode.left !== null) {
-      currentNode.left.inOrder(array);
+    if (this.left !== null) {
+      this.left.inOrder(array);
     }
-    array.push(currentNode.value);
-    if (currentNode.right !== null) {
-      currentNode.right.inOrder(array);
+    array.push(this.value);
+    if (this.right !== null) {
+      this.right.inOrder(array);
     }
     return array;
   }
+
+  // *************************************************************************************
+  preOrder(array) {
+    console.log(`calling  preOrder on ${this.value}`);
+    array.push(this.value);
+    if (this.left !== null) {
+      this.left.preOrder(array);
+    }
+    if (this.right !== null) {
+      this.right.preOrder(array);
+    }
+    return array;
+  }
+
+  // *************************************************************************************
 }
 
 class Tree {
@@ -353,11 +367,25 @@ class Tree {
         array[i] = callback(array[i]);
       }
     }
-    console.log(array)
+    console.log(array);
     return array;
   }
 
-  preOrder(callback) {}
+  preOrder(callback) {
+    if (this.root == null) {
+      console.log(`called preOrder callback on an empty tree. return null`);
+      return null;
+    }
+    let array = [];
+    array = this.root.preOrder(array);
+    if (callback !== undefined) {
+      for (let i = 0; i < array.length; i++) {
+        array[i] = callback(array[i]);
+      }
+    }
+    console.log(array);
+    return array;
+  }
 
   postOrder(callback) {}
 }
@@ -376,7 +404,7 @@ let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray8);
+let testTree = new Tree(testArray4);
 // console.log(testTree);
 
 // createTestTree(16)
@@ -389,4 +417,4 @@ let testTree = new Tree(testArray8);
 
 logPrettyTree(testTree);
 
-testTree.inOrder(addOne);
+testTree.preOrder(addOne);
