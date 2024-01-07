@@ -387,7 +387,21 @@ class Tree {
     return array;
   }
 
-  postOrder(callback) {}
+  postOrder(callback) {
+    if (this.root == null) {
+      console.log(`called postOrder callback on an empty tree. return null`);
+      return null;
+    }
+    let array = [];
+    array = this.root.postOrder(array);
+    if (callback !== undefined) {
+      for (let i = 0; i < array.length; i++) {
+        array[i] = callback(array[i]);
+      }
+    }
+    console.log(array);
+    return array;
+  }
 }
 
 // ******************************************************************************************************************************************************
@@ -417,4 +431,4 @@ let testTree = new Tree(testArray4);
 
 logPrettyTree(testTree);
 
-testTree.preOrder(addOne);
+// testTree.postOrder(addOne);
