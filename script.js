@@ -311,17 +311,47 @@ class Node {
   height(count) {
     // Returns the height of this node, which is the height of it's tallest child + 1
 
+    // if (node.isLeafNode()){
+    //     count ++;
+    //     return count;
+    // }
+
+
+
+console.log(`determining the height of ${this.value}`);
     if (this.isLeafNode()) {
-        console.log(`found leafNode, incrementing count`);
+        console.log(`found leafNode, incrementing count and returning`);
       count++;
       console.log(`count: ${count}`);
-    } else if (this.right.height(count) > this.left.height(count)) {
-      count = this.right.height(count);
-      count++;
-    } else if (this.right.height(count) < this.left.height(count)) {
-      count = this.left.height(count);
-      count++;
-    }
+      return count;
+    } 
+    let leftHeight = null;
+    let rightHeight = null;
+
+console.log(`leftHeight: ${leftHeight}`);
+console.log(`rightHeight: ${rightHeight}`);
+
+
+    if (this.left !== null){
+        leftHeight = this.left.height(count);
+    } 
+    if (this.right !== null){
+        rightHeight = this.right.height(count);
+    } 
+
+
+    console.log(`leftHeight: ${leftHeight}`);
+    console.log(`rightHeight: ${rightHeight}`);
+
+
+    // else if (this.right.height(count) > this.left.height(count)) {
+
+    //   count = this.right.height(count);
+    //   count++;
+    // } else if (this.right.height(count) < this.left.height(count)) {
+    //   count = this.left.height(count);
+    //   count++;
+    // }
     return count;
   }
 }
@@ -438,7 +468,7 @@ class Tree {
 
   // *****************************************************************************************************
   // *****************************************************************************************************
-  
+
   height(node) {
     // Takes a node and returns the height - the number of edges in the longest path from that node to a leaf node
 
@@ -449,6 +479,13 @@ class Tree {
     } else if (node == undefined) {
       console.log(`Node is undefined, returning 0`);
     }
+
+
+    // if (node.isLeafNode()){
+    //     count ++;
+    //     return count;
+    // }
+
 
     count = node.height(count);
     console.log(`final height: ${count}`);
@@ -477,7 +514,7 @@ let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 
-let testTree2 = createTestTree(20);
+// let testTree2 = createTestTree(20);
 // ******************************************************************************************************************************************************
 // Tests
 
