@@ -280,7 +280,6 @@ class Node {
     return array;
   }
 
-  // *************************************************************************************
   preOrder(array) {
     console.log(`calling  preOrder on ${this.value}`);
     array.push(this.value);
@@ -293,7 +292,17 @@ class Node {
     return array;
   }
 
-  // *************************************************************************************
+  postOrder(array) {
+    // console.log(`calling  postOrder on ${this.value}`);
+    if (this.left !== null) {
+      this.left.postOrder(array);
+    }
+    if (this.right !== null) {
+      this.right.postOrder(array);
+    }
+    array.push(this.value);
+    return array;
+  }
 }
 
 class Tree {
@@ -377,7 +386,7 @@ class Tree {
       return null;
     }
     let array = [];
-    array = this.root.preOrder(array);
+    array = this.root.postOrder(array);
     if (callback !== undefined) {
       for (let i = 0; i < array.length; i++) {
         array[i] = callback(array[i]);
@@ -432,3 +441,5 @@ let testTree = new Tree(testArray4);
 logPrettyTree(testTree);
 
 // testTree.postOrder(addOne);
+
+testTree.postOrder();
