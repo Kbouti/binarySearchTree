@@ -304,9 +304,6 @@ class Node {
     return array;
   }
 
-  // *****************************************************************************************************
-  // *****************************************************************************************************
-
   height() {
     console.log(`determining the height of ${this.value}`);
     // Returns the height of this node, which is the height of it's tallest child + 1
@@ -324,11 +321,16 @@ class Node {
     }
     if (leftHeight > rightHeight) {
       count += leftHeight;
-    } else  {
+    } else {
       count += rightHeight;
-    } 
+    }
     return count;
   }
+
+  // *****************************************************************************************************
+  // *****************************************************************************************************
+
+  depth() {}
 }
 // *****************************************************************************************************
 // *****************************************************************************************************
@@ -451,16 +453,41 @@ class Tree {
       return count;
     } else if (node == null) {
       console.log(`Node is undefined, returning 0`);
-      return count
+      return count;
     }
     count = node.height();
     console.log(`final height: ${count}`);
     return count;
   }
 
-
   depth(node) {
     // Takes a node and returns the depth - the number of edges in the path from that node to the root node
+    let count = 0;
+    if (this.root == null) {
+      console.log(`Nothing in this tree, returning 0`);
+      return count;
+    } else if (node == null) {
+      console.log(`Node is undefined, returning 0`);
+      return count;
+    }
+    console.log(`looking for depth of ${node.value}`);
+
+    count++;
+    let currentNode = this.root;
+
+    while (currentNode !== node && currentNode !== null) {
+      if (currentNode.value > node.value) {
+        currentNode = currentNode.left;
+        count++;
+      } else if (currentNode.value < node.value) {
+        currentNode = currentNode.right;
+        count++;
+      }
+    }
+    if (currentNode == node) {
+      console.log(count);
+      return count;
+    }
   }
 }
 
@@ -484,5 +511,5 @@ let testTree = new Tree(testArray8);
 
 logPrettyTree(testTree);
 
-let node = testTree.find(36);
-let height = testTree.height(node);
+let node = testTree.find(85);
+let height = testTree.depth(node);
