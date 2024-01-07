@@ -327,24 +327,27 @@ class Tree {
     return array;
   }
 
-  inOrder(callback){
-// Starts at the root node and moves left down the tree until it reaches a node with no left. It then reads it's own value then moves right if there is a node, or back up to it's parent
-if (this.root == null) {
-    console.log(`function called on empty tree, returning null`);
-    return null;
+  inOrder(callback) {
+    // Starts at the root node and moves left down the tree until it reaches a node with no left. It then reads it's own value then moves right if there is a node, or back up to it's parent
+    if (this.root == null) {
+      console.log(`function called on empty tree, returning null`);
+      return null;
+    }
+    let currentNode = this.root;
+
+    let stack = [];
+
+    while (currentNode.left !== null) {
+      stack.push(currentNode);
+      currentNode = currentNode.left;
+    }
+
+    
   }
 
+  preOrder(callback) {}
 
-
-  }
-
-  preOrder(callback){
-
-  }
-
-  postOrder(callback){
-
-  }
+  postOrder(callback) {}
 }
 
 // ******************************************************************************************************************************************************
@@ -374,4 +377,4 @@ let testTree = new Tree(testArray4);
 
 logPrettyTree(testTree);
 
-testTree.levelOrder(addOne);
+// testTree.levelOrder(addOne);
