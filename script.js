@@ -326,6 +326,25 @@ class Tree {
     }
     return array;
   }
+
+  inOrder(callback){
+// Starts at the root node and moves left down the tree until it reaches a node with no left. It then reads it's own value then moves right if there is a node, or back up to it's parent
+if (this.root == null) {
+    console.log(`function called on empty tree, returning null`);
+    return null;
+  }
+
+
+
+  }
+
+  preOrder(callback){
+
+  }
+
+  postOrder(callback){
+
+  }
 }
 
 // ******************************************************************************************************************************************************
