@@ -303,7 +303,30 @@ class Node {
     array.push(this.value);
     return array;
   }
+
+
+// *****************************************************************************************************
+// *****************************************************************************************************
+
+  height(count) {
+    // Returns the height of this node, which is the height of it's tallest child + 1
+
+    if (this.isLeafNode()) {
+        console.log(`found leafNode, incrementing count`);
+      count++;
+      console.log(`count: ${count}`);
+    } else if (this.right.height(count) > this.left.height(count)) {
+      count = this.right.height(count);
+      count++;
+    } else if (this.right.height(count) < this.left.height(count)) {
+      count = this.left.height(count);
+      count++;
+    }
+    return count;
+  }
 }
+// *****************************************************************************************************
+// *****************************************************************************************************
 
 class Tree {
   constructor(array) {
@@ -412,35 +435,33 @@ class Tree {
     return array;
   }
 
-  height(node){
+
+  // *****************************************************************************************************
+  // *****************************************************************************************************
+  
+  height(node) {
     // Takes a node and returns the height - the number of edges in the longest path from that node to a leaf node
 
     let count = 0;
-    if (this.root == null){
-        console.log(`Nothing in this tree, returning 0`);
-return count
-    } else if (node == undefined){
-        console.log(`Node is undefined, returning 0`);
+    if (this.root == null) {
+      console.log(`Nothing in this tree, returning 0`);
+      return count;
+    } else if (node == undefined) {
+      console.log(`Node is undefined, returning 0`);
     }
-if (this.isLeafNode){
-    count ++;
-    return count
-}
-// else if (this.)
-// We need to get recursive here
-// The height of a node is the height of whichever of it's children has a higher node, plus one
 
-}
+    count = node.height(count);
+    console.log(`final height: ${count}`);
+    return count;
 
-
-
-    while (this.right !== null && this.left !== null){
-count ++;
-
-    }
+    // We need to get recursive here
+    // The height of a node is the height of whichever of it's children has a higher node, plus one
   }
 
-  depth(node){
+  //     while (this.right !== null && this.left !== null){
+  // count ++;
+
+  depth(node) {
     // Takes a node and returns the depth - the number of edges in the path from that node to the root node
   }
 }
@@ -456,23 +477,14 @@ let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 
-let testTree2 = createTestTree(20)
+let testTree2 = createTestTree(20);
 // ******************************************************************************************************************************************************
 // Tests
 
 let testTree = new Tree(testArray8);
 // console.log(testTree);
 
-// createTestTree(16)
-
-// let testTree1 = createTestTree(8);
-
-// testTree.insert(1);
-// testTree.delete(50255);
-// testTree.find(30);
-
 logPrettyTree(testTree);
 
-// testTree.postOrder(addOne);
-
-testTree.postOrder();
+let node = testTree.find(34);
+let height = testTree.height(node);
