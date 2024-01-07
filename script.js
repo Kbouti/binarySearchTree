@@ -267,6 +267,42 @@ class Node {
     }
     return targetNode;
   }
+
+
+  inOrder(callback) {
+    // Starts at the root node and moves left down the tree until it reaches a node with no left. It then reads it's own value then moves right if there is a node, or back up to it's parent
+    if (this.root == null) {
+      console.log(`function called on empty tree, returning null`);
+      return null;
+    }
+
+    let currentNode = this.root;
+    let stack = [];
+    let array = [];
+
+    while (currentNode.left !== null) {
+      stack.push(currentNode);
+      stack.push(currentNode.left);
+      currentNode = currentNode.left;
+    }
+    array.push(currentNode.value);
+    if (currentNode.right !== null){
+        // recursively call the function again here?
+    }
+
+
+// On each turn the element:
+// Stores a reference to itself
+// stores a reference to it's left child
+// repeats the process for the element on the top of the stack
+
+
+
+
+  }
+
+
+
 }
 
 class Tree {
@@ -333,16 +369,8 @@ class Tree {
       console.log(`function called on empty tree, returning null`);
       return null;
     }
-    let currentNode = this.root;
 
-    let stack = [];
-
-    while (currentNode.left !== null) {
-      stack.push(currentNode);
-      currentNode = currentNode.left;
-    }
-
-    
+    return this.root.inOrder(callback);
   }
 
   preOrder(callback) {}
@@ -377,4 +405,4 @@ let testTree = new Tree(testArray4);
 
 logPrettyTree(testTree);
 
-// testTree.levelOrder(addOne);
+// testTree.inOrder(addOne);
