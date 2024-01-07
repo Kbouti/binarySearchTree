@@ -109,6 +109,10 @@ function createTestTree(length) {
   logPrettyTree(newTree);
   return newTree;
 }
+
+function addOne(number) {
+  return number + 0.69;
+}
 // ******************************************************************************************************************************************************
 // Classes:
 
@@ -248,11 +252,9 @@ class Node {
     if (this.value === value) {
       console.log(`found it!`);
       targetNode = this;
-    } 
-    else if (this.isLeafNode()){
-        console.log(`couldn't find the value you're looking for`);
-    }
-    else if (this.value > value) {
+    } else if (this.isLeafNode()) {
+      console.log(`couldn't find the value you're looking for`);
+    } else if (this.value > value) {
       if (this.left == null) {
         console.log(`couldn't find the value you're looking for`);
       }
@@ -295,13 +297,35 @@ class Tree {
     return this.root.find(value);
   }
 
-// Level order starts at the root node and reads every value in each level, starting left and moving right on each level
+  levelOrder(callback) {
+    // Takes an optional callback function and applies the function to each node in level order
+    if (this.root == null) {
+      console.log(`function called on empty tree, returning null`);
+      return null;
+    }
+    let queue = [];
+    let array = [];
+    queue.push(this.root);
+    while (queue.length > 0) {
+      if (queue[0].left !== null) {
+        queue.push(queue[0].left);
+      }
+      if (queue[0].right !== null) {
+        queue.push(queue[0].right);
+      }
+      array.push(queue[0].value);
 
-levelOrder(callback){
-    // Takes an option callback function and appliese the function to each node in level order
-    // If no callback is provided, it will return an array of all of the values 
-}
-
+      queue.splice(0, 1);
+    }
+    console.log(array);
+    if (callback() !== null) {
+      for (let i = 0; i < array.length; i++) {
+        array[i] = callback(array[i]);
+      }
+      console.log(`post-callback array: ${array}`);
+    }
+    return array;
+  }
 }
 
 // ******************************************************************************************************************************************************
@@ -318,7 +342,7 @@ let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray8);
+let testTree = new Tree(testArray4);
 // console.log(testTree);
 
 // createTestTree(16)
@@ -331,6 +355,4 @@ let testTree = new Tree(testArray8);
 
 logPrettyTree(testTree);
 
-let numas = testTree.find(32);
-console.log(numas);
-
+testTree.levelOrder(addOne);
