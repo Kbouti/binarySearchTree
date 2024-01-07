@@ -494,17 +494,27 @@ isBalanced(){
     // Returns true if the heights of the left and right subtree of every node differ by no more than 1
 
 let currentNode = this.root;
+let isBalanced = true;
+
+
+if (this.left == undefined || this.right == undefined){
+    return isBalanced;
+}
+
 let leftNode = this.left;
 let rightNode = this.right; 
 
 let leftNodeHeight = this.height(leftNode);
 let rightNodeHeight = this.height(rightNode);
 
-if ((leftNodeHeight - rightNodeHeight  > 1) || (rightNodeHeight - leftNodeHeight > 1)){
-    console.log(`unbalanced tree`)
-}
 
-// This maybe checks one node? Idk I need a break
+console.log(`leftNodeHeight: ${leftNodeHeight}`);
+console.log(`rightNodeHeight: ${rightNodeHeight}`);
+// if ((leftNodeHeight - rightNodeHeight  > 1) || (rightNodeHeight - leftNodeHeight > 1)){
+//     console.log(`unbalanced tree`)
+// }
+
+// we never turn isBalanced to false
 
 
 }
@@ -534,3 +544,10 @@ logPrettyTree(testTree);
 
 let node = testTree.find(85);
 let height = testTree.depth(node);
+console.log(testTree.isBalanced());
+
+testTree.insert(345);
+
+testTree.insert(345646);
+testTree.insert(3456465);
+console.log(testTree.isBalanced());
