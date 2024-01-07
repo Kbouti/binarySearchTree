@@ -268,27 +268,18 @@ class Node {
     return targetNode;
   }
 
-
-  inOrder(array, callback) {
-    // Starts at the root node and moves left down the tree until it reaches a node with no left. It then reads it's own value then moves 
+  inOrder(array) {
     let currentNode = this;
-    // let stack = [];
-console.log(`calling inOrder on ${this.value}`);
-
-// First call the function on the element to it's left, then read it's own value, then call the function on the element to it's right
-
-if (currentNode.left !== null){
-    currentNode.left.inOrder(array, callback);
-}
-array.push(currentNode.value);
-if (currentNode.right !== null){
-    currentNode.right.inOrder(array, callback);
-}
-console.log(array);
-return array;
-
+    console.log(`calling inOrder on ${this.value}`);
+    if (currentNode.left !== null) {
+      currentNode.left.inOrder(array);
     }
-
+    array.push(currentNode.value);
+    if (currentNode.right !== null) {
+      currentNode.right.inOrder(array);
+    }
+    return array;
+  }
 }
 
 class Tree {
@@ -356,8 +347,14 @@ class Tree {
       return null;
     }
     let array = [];
-
-    return this.root.inOrder(array, callback);
+    array = this.root.inOrder(array);
+    if (callback !== undefined) {
+      for (let i = 0; i < array.length; i++) {
+        array[i] = callback(array[i]);
+      }
+    }
+    console.log(array)
+    return array;
   }
 
   preOrder(callback) {}
@@ -379,7 +376,7 @@ let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray4);
+let testTree = new Tree(testArray8);
 // console.log(testTree);
 
 // createTestTree(16)
