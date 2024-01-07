@@ -304,54 +304,29 @@ class Node {
     return array;
   }
 
+  // *****************************************************************************************************
+  // *****************************************************************************************************
 
-// *****************************************************************************************************
-// *****************************************************************************************************
-
-  height(count) {
+  height() {
+    console.log(`determining the height of ${this.value}`);
     // Returns the height of this node, which is the height of it's tallest child + 1
-
-    // if (node.isLeafNode()){
-    //     count ++;
-    //     return count;
-    // }
-
-
-
-console.log(`determining the height of ${this.value}`);
+    let count = 1;
     if (this.isLeafNode()) {
-        console.log(`found leafNode, incrementing count and returning`);
-      count++;
-      console.log(`count: ${count}`);
       return count;
+    }
+    let leftHeight = 0;
+    let rightHeight = 0;
+    if (this.left !== null) {
+      leftHeight = this.left.height();
+    }
+    if (this.right !== null) {
+      rightHeight = this.right.height();
+    }
+    if (leftHeight > rightHeight) {
+      count += leftHeight;
+    } else  {
+      count += rightHeight;
     } 
-    let leftHeight = null;
-    let rightHeight = null;
-
-console.log(`leftHeight: ${leftHeight}`);
-console.log(`rightHeight: ${rightHeight}`);
-
-
-    if (this.left !== null){
-        leftHeight = this.left.height(count);
-    } 
-    if (this.right !== null){
-        rightHeight = this.right.height(count);
-    } 
-
-
-    console.log(`leftHeight: ${leftHeight}`);
-    console.log(`rightHeight: ${rightHeight}`);
-
-
-    // else if (this.right.height(count) > this.left.height(count)) {
-
-    //   count = this.right.height(count);
-    //   count++;
-    // } else if (this.right.height(count) < this.left.height(count)) {
-    //   count = this.left.height(count);
-    //   count++;
-    // }
     return count;
   }
 }
@@ -465,38 +440,24 @@ class Tree {
     return array;
   }
 
-
   // *****************************************************************************************************
   // *****************************************************************************************************
 
   height(node) {
     // Takes a node and returns the height - the number of edges in the longest path from that node to a leaf node
-
     let count = 0;
     if (this.root == null) {
       console.log(`Nothing in this tree, returning 0`);
       return count;
-    } else if (node == undefined) {
+    } else if (node == null) {
       console.log(`Node is undefined, returning 0`);
+      return count
     }
-
-
-    // if (node.isLeafNode()){
-    //     count ++;
-    //     return count;
-    // }
-
-
-    count = node.height(count);
+    count = node.height();
     console.log(`final height: ${count}`);
     return count;
-
-    // We need to get recursive here
-    // The height of a node is the height of whichever of it's children has a higher node, plus one
   }
 
-  //     while (this.right !== null && this.left !== null){
-  // count ++;
 
   depth(node) {
     // Takes a node and returns the depth - the number of edges in the path from that node to the root node
@@ -523,5 +484,5 @@ let testTree = new Tree(testArray8);
 
 logPrettyTree(testTree);
 
-let node = testTree.find(34);
+let node = testTree.find(36);
 let height = testTree.height(node);
