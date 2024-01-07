@@ -411,6 +411,14 @@ class Tree {
     console.log(array);
     return array;
   }
+
+  height(node){
+    // Takes a node and returns the height - the number of edges in the longest path from that node to a leaf node
+  }
+
+  depth(node){
+    // Takes a node and returns the depth - the number of edges in the path from that node to the root node
+  }
 }
 
 // ******************************************************************************************************************************************************
