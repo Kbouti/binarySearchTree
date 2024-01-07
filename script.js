@@ -414,6 +414,30 @@ class Tree {
 
   height(node){
     // Takes a node and returns the height - the number of edges in the longest path from that node to a leaf node
+
+    let count = 0;
+    if (this.root == null){
+        console.log(`Nothing in this tree, returning 0`);
+return count
+    } else if (node == undefined){
+        console.log(`Node is undefined, returning 0`);
+    }
+if (this.isLeafNode){
+    count ++;
+    return count
+}
+// else if (this.)
+// We need to get recursive here
+// The height of a node is the height of whichever of it's children has a higher node, plus one
+
+}
+
+
+
+    while (this.right !== null && this.left !== null){
+count ++;
+
+    }
   }
 
   depth(node){
@@ -432,10 +456,11 @@ let testArray5 = [12, 3, 54, 109, 54, 3, 423];
 const testArray7 = [7, 6, 5, 4, 3, 2, 1];
 let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 
+let testTree2 = createTestTree(20)
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray4);
+let testTree = new Tree(testArray8);
 // console.log(testTree);
 
 // createTestTree(16)
