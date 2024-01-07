@@ -489,6 +489,27 @@ class Tree {
       return count;
     }
   }
+
+isBalanced(){
+    // Returns true if the heights of the left and right subtree of every node differ by no more than 1
+
+let currentNode = this.root;
+let leftNode = this.left;
+let rightNode = this.right; 
+
+let leftNodeHeight = this.height(leftNode);
+let rightNodeHeight = this.height(rightNode);
+
+if ((leftNodeHeight - rightNodeHeight  > 1) || (rightNodeHeight - leftNodeHeight > 1)){
+    console.log(`unbalanced tree`)
+}
+
+// This maybe checks one node? Idk I need a break
+
+
+}
+
+
 }
 
 // ******************************************************************************************************************************************************
