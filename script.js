@@ -493,6 +493,11 @@ class Tree {
 isBalanced(){
     // Returns true if the heights of the left and right subtree of every node differ by no more than 1
 
+// A binary search tree is balanced if:
+// The left half of the binary search tree is balanced
+// The right half of the binary search tree is balanced
+// The heights of the left and right trees differ by no more than one
+
 let currentNode = this.root;
 let isBalanced = true;
 
@@ -500,6 +505,8 @@ let isBalanced = true;
 if (this.left == undefined || this.right == undefined){
     return isBalanced;
 }
+let highestHeight;
+let nextHighestHeight;
 
 let leftNode = this.left;
 let rightNode = this.right; 
@@ -507,7 +514,7 @@ let rightNode = this.right;
 let leftNodeHeight = this.height(leftNode);
 let rightNodeHeight = this.height(rightNode);
 
-
+while()
 console.log(`leftNodeHeight: ${leftNodeHeight}`);
 console.log(`rightNodeHeight: ${rightNodeHeight}`);
 // if ((leftNodeHeight - rightNodeHeight  > 1) || (rightNodeHeight - leftNodeHeight > 1)){
