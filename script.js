@@ -500,26 +500,40 @@ isBalanced(){
 
 let currentNode = this.root;
 let isBalanced = true;
+let leftTreeHeight;
+let rightTreeHeight;
 
-
-if (this.left == undefined || this.right == undefined){
-    return isBalanced;
+if (currentNode.left == undefined){
+    leftTreeHeight = 0;
+    console.log(`No left nodes, leftTreeHeight is ${leftTreeHeight}`);
 }
-let highestHeight;
-let nextHighestHeight;
 
-let leftNode = this.left;
-let rightNode = this.right; 
+else {
+    leftTreeHeight = this.height(currentNode.left);
+    console.log(`left node detected, it's height is: ${leftTreeHeight}`);
+}
 
-let leftNodeHeight = this.height(leftNode);
-let rightNodeHeight = this.height(rightNode);
 
-while()
-console.log(`leftNodeHeight: ${leftNodeHeight}`);
-console.log(`rightNodeHeight: ${rightNodeHeight}`);
-// if ((leftNodeHeight - rightNodeHeight  > 1) || (rightNodeHeight - leftNodeHeight > 1)){
-//     console.log(`unbalanced tree`)
-// }
+if (currentNode.right == undefined){
+    rightTreeHeight = 0;
+    console.log(`No right nodes, rightTreeHeight is ${rightTreeHeight}`);
+
+}
+
+else {
+    rightTreeHeight = this.height(currentNode.right);
+    console.log(`right node detected, it's height is: ${rightTreeHeight}`);
+}
+
+
+console.log(`leftTreeHeight: ${leftTreeHeight}`);
+console.log(`rightTreeHeight: ${rightTreeHeight}`);
+
+
+if ((leftTreeHeight - rightTreeHeight  > 1) || (rightTreeHeight - leftTreeHeight > 1)){
+    console.log(`unbalanced tree`)
+    return false
+}
 
 // we never turn isBalanced to false
 
