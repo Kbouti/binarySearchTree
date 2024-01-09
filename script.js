@@ -406,7 +406,7 @@ class Tree {
         array[i] = callback(array[i]);
       }
     }
-    console.log(array);
+    // console.log(array);
     return array;
   }
 
@@ -422,7 +422,7 @@ class Tree {
         array[i] = callback(array[i]);
       }
     }
-    console.log(array);
+    // console.log(array);
     return array;
   }
 
@@ -438,7 +438,7 @@ class Tree {
         array[i] = callback(array[i]);
       }
     }
-    console.log(array);
+    // console.log(array);
     return array;
   }
 
@@ -528,26 +528,17 @@ class Tree {
   // *****************************************************************************************************
 
   reBalance() {
-    // Rebalances the subtree
-    // I'm thinking I'll create an array using one of our esisting functions and then make a new tree
-
-    // Will this return a new tree? Or rearrange the old one?
-    // It'll have to make a new tree, so I think it's going to return a new tree regardless
-
+// Returns a reference to this unchanged tree if it is already balanced
+// Otherwise returns as new tree from an inOrder array from the first unbalanced tree
     if (this.isBalanced()) {
       console.log(`Tree is already balanced, returning tree`);
       return this;
     } else {
-      console.log(`Creating new balanced tree`);
+      console.log(`Creating new balanced tree with array: `);
       let array = this.inOrder();
       console.log(array);
 
       let newTree = new Tree(array);
-      
-      console.log(`New balanced tree created: `)
-      console.log(newTree);
-      console.log(`newTree isBalanced? ${newTree.isBalanced()}`);
-      prettyPrint(newTree.root)
       return newTree
     }
   }
@@ -571,15 +562,19 @@ let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 let testTree = new Tree(testArray8);
 // console.log(testTree);
 
-let node = testTree.find(85);
-let height = testTree.depth(node);
+// let node = testTree.find(85);
+// let height = testTree.depth(node);
 console.log(testTree.isBalanced());
 
 testTree.insert(345);
 
 testTree.insert(345646);
 testTree.insert(3456465);
+console.log(testTree.isBalanced());
 
 logPrettyTree(testTree);
 
-console.log(testTree.reBalance());
+let newTree = testTree.reBalance();
+console.log(newTree.isBalanced())
+prettyPrint(newTree.root)
+
