@@ -383,7 +383,9 @@ class Tree {
 
       queue.splice(0, 1);
     }
-    // console.log(array);
+    if (callback == null){
+        return array;
+    }
     if (callback() !== null) {
       for (let i = 0; i < array.length; i++) {
         array[i] = callback(array[i]);
@@ -593,12 +595,17 @@ function runScript() {
   let array = createRandomArray(10);
   let tree = new Tree(array);
   console.log(`tree.isBalanced?: ${tree.isBalanced()}`);
+  prettyPrint(tree.root)
+
+// Forgot to print out all the elements in level, pre, post, and in order
+console.log(tree.levelOrder())
 
   for (let i = 0; i < 5; i++) {
     let newNumber = Math.floor(Math.random() * 1000);
-    console.log(newNumber);
     tree.insert(newNumber);
   }
+  prettyPrint(tree.root)
+
   console.log(`tree.isBalanced?: ${tree.isBalanced()}`);
 }
 
