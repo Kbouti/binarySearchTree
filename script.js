@@ -598,7 +598,10 @@ function runScript() {
   prettyPrint(tree.root)
 
 // Forgot to print out all the elements in level, pre, post, and in order
-console.log(tree.levelOrder())
+console.log(`levelOrder: ${tree.levelOrder()}`);
+console.log(`preOrder: ${tree.preOrder()}`);
+console.log(`inOrder: ${tree.inOrder()}`);
+console.log(`postOrder: ${tree.postOrder()}`);
 
   for (let i = 0; i < 5; i++) {
     let newNumber = Math.floor(Math.random() * 1000);
@@ -610,3 +613,7 @@ console.log(tree.levelOrder())
 }
 
 runScript();
+
+
+// ***************************************************
+// preOrder and postOrder functions are returning the same array. Fix that. 
