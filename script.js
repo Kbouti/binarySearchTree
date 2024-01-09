@@ -492,12 +492,6 @@ class Tree {
 
   isBalanced() {
     // Returns true if the heights of the left and right subtree of every node differ by no more than 1
-
-    // A binary search tree is balanced if:
-    // The left half of the binary search tree is balanced
-    // The right half of the binary search tree is balanced
-    // The heights of the left and right trees differ by no more than one
-
     let currentNode = this.root;
     let isBalanced = true;
     let leftTreeHeight;
@@ -529,6 +523,25 @@ class Tree {
     }
     return isBalanced;
   }
+
+
+reBalance(){
+    // Rebalances the subtree
+    // I'm thinking I'll create an array using one of our esisting functions and then make a new tree
+
+    // Will this return a new tree? Or rearrange the old one? 
+    // It'll have to make a new tree, so I think it's going to return a new tree regardless
+
+    if (this.isBalanced()){
+        console.log(`Tree is already balanced, returning tree`);
+        return this;
+    } else {
+        console.log(`Tree is not balanced. We got some work to do`);
+
+    }
+
+}
+
 }
 
 // ******************************************************************************************************************************************************
@@ -553,11 +566,11 @@ let node = testTree.find(85);
 let height = testTree.depth(node);
 console.log(testTree.isBalanced());
 
-// testTree.insert(345);
+testTree.insert(345);
 
-// testTree.insert(345646);
-// testTree.insert(3456465);
+testTree.insert(345646);
+testTree.insert(3456465);
 
 logPrettyTree(testTree);
 
-console.log(testTree.isBalanced());
+console.log(testTree.reBalance());
