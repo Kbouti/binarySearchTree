@@ -556,24 +556,24 @@ let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 // ******************************************************************************************************************************************************
 // Tests
 
-let testTree = new Tree(testArray8);
+// let testTree = new Tree(testArray8);
 // console.log(testTree);
 
 // let node = testTree.find(85);
 // let height = testTree.depth(node);
-console.log(testTree.isBalanced());
+// console.log(testTree.isBalanced());
 
-testTree.insert(345);
+// testTree.insert(345);
 
-testTree.insert(345646);
-testTree.insert(3456465);
-console.log(testTree.isBalanced());
+// testTree.insert(345646);
+// testTree.insert(3456465);
+// console.log(testTree.isBalanced());
 
-logPrettyTree(testTree);
+// logPrettyTree(testTree);
 
-let newTree = testTree.reBalance();
-console.log(newTree.isBalanced());
-prettyPrint(newTree.root);
+// let newTree = testTree.reBalance();
+// console.log(newTree.isBalanced());
+// prettyPrint(newTree.root);
 
 // *****************************************************************************************************
 // *****************************************************************************************************
@@ -588,3 +588,18 @@ prettyPrint(newTree.root);
 // 6. Balance the tree by calling rebalance.
 // 7. Confirm that the tree is balanced by calling isBalanced.
 // 8. Print out all elements in level, pre, post, and in order.
+
+function runScript() {
+  let array = createRandomArray(10);
+  let tree = new Tree(array);
+  console.log(`tree.isBalanced?: ${tree.isBalanced()}`);
+
+  for (let i = 0; i < 5; i++) {
+    let newNumber = Math.floor(Math.random() * 1000);
+    console.log(newNumber);
+    tree.insert(newNumber);
+  }
+  console.log(`tree.isBalanced?: ${tree.isBalanced()}`);
+}
+
+runScript();
