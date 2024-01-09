@@ -524,24 +524,33 @@ class Tree {
     return isBalanced;
   }
 
+  // *****************************************************************************************************
+  // *****************************************************************************************************
 
-reBalance(){
+  reBalance() {
     // Rebalances the subtree
     // I'm thinking I'll create an array using one of our esisting functions and then make a new tree
 
-    // Will this return a new tree? Or rearrange the old one? 
+    // Will this return a new tree? Or rearrange the old one?
     // It'll have to make a new tree, so I think it's going to return a new tree regardless
 
-    if (this.isBalanced()){
-        console.log(`Tree is already balanced, returning tree`);
-        return this;
+    if (this.isBalanced()) {
+      console.log(`Tree is already balanced, returning tree`);
+      return this;
     } else {
-        console.log(`Tree is not balanced. We got some work to do`);
+      console.log(`Creating new balanced tree`);
+      let array = this.inOrder();
+      console.log(array);
 
+      let newTree = new Tree(array);
+      
+      console.log(`New balanced tree created: `)
+      console.log(newTree);
+      console.log(`newTree isBalanced? ${newTree.isBalanced()}`);
+      prettyPrint(newTree.root)
+      return newTree
     }
-
-}
-
+  }
 }
 
 // ******************************************************************************************************************************************************
