@@ -269,7 +269,7 @@ class Node {
   }
 
   inOrder(array) {
-    console.log(`calling inOrder on ${this.value}`);
+    // console.log(`calling inOrder on ${this.value}`);
     if (this.left !== null) {
       this.left.inOrder(array);
     }
@@ -281,7 +281,7 @@ class Node {
   }
 
   preOrder(array) {
-    console.log(`calling  preOrder on ${this.value}`);
+    // console.log(`calling  preOrder on ${this.value}`);
     array.push(this.value);
     if (this.left !== null) {
       this.left.preOrder(array);
@@ -305,7 +305,7 @@ class Node {
   }
 
   height() {
-    console.log(`determining the height of ${this.value}`);
+    // console.log(`determining the height of ${this.value}`);
     // Returns the height of this node, which is the height of it's tallest child + 1
     let count = 1;
     if (this.isLeafNode()) {
@@ -383,12 +383,12 @@ class Tree {
 
       queue.splice(0, 1);
     }
-    console.log(array);
+    // console.log(array);
     if (callback() !== null) {
       for (let i = 0; i < array.length; i++) {
         array[i] = callback(array[i]);
       }
-      console.log(`post-callback array: ${array}`);
+    //   console.log(`post-callback array: ${array}`);
     }
     return array;
   }
@@ -449,14 +449,14 @@ class Tree {
     // Takes a node and returns the height - the number of edges in the longest path from that node to a leaf node
     let count = 0;
     if (this.root == null) {
-      console.log(`Nothing in this tree, returning 0`);
+    //   console.log(`Nothing in this tree, returning 0`);
       return count;
     } else if (node == null) {
-      console.log(`Node is undefined, returning 0`);
+    //   console.log(`Node is undefined, returning 0`);
       return count;
     }
     count = node.height();
-    console.log(`final height: ${count}`);
+    // console.log(`final height: ${count}`);
     return count;
   }
 
@@ -470,7 +470,7 @@ class Tree {
       console.log(`Node is undefined, returning 0`);
       return count;
     }
-    console.log(`looking for depth of ${node.value}`);
+    // console.log(`looking for depth of ${node.value}`);
 
     count++;
     let currentNode = this.root;
@@ -485,7 +485,7 @@ class Tree {
       }
     }
     if (currentNode == node) {
-      console.log(count);
+    //   console.log(count);
       return count;
     }
   }
@@ -499,26 +499,26 @@ class Tree {
 
     if (currentNode.left == undefined) {
       leftTreeHeight = 0;
-      console.log(`No left nodes, leftTreeHeight is ${leftTreeHeight}`);
+    //   console.log(`No left nodes, leftTreeHeight is ${leftTreeHeight}`);
     } else {
       leftTreeHeight = this.height(currentNode.left);
-      console.log(`left node detected, it's height is: ${leftTreeHeight}`);
+    //   console.log(`left node detected, it's height is: ${leftTreeHeight}`);
     }
     if (currentNode.right == undefined) {
       rightTreeHeight = 0;
-      console.log(`No right nodes, rightTreeHeight is ${rightTreeHeight}`);
+    //   console.log(`No right nodes, rightTreeHeight is ${rightTreeHeight}`);
     } else {
       rightTreeHeight = this.height(currentNode.right);
-      console.log(`right node detected, it's height is: ${rightTreeHeight}`);
+    //   console.log(`right node detected, it's height is: ${rightTreeHeight}`);
     }
-    console.log(`final leftTreeHeight: ${leftTreeHeight}`);
-    console.log(`final rightTreeHeight: ${rightTreeHeight}`);
+    // console.log(`final leftTreeHeight: ${leftTreeHeight}`);
+    // console.log(`final rightTreeHeight: ${rightTreeHeight}`);
 
     if (
       leftTreeHeight - rightTreeHeight > 1 ||
       rightTreeHeight - leftTreeHeight > 1
     ) {
-      console.log(`unbalanced tree`);
+    //   console.log(`unbalanced tree`);
       isBalanced = false;
     }
     return isBalanced;
