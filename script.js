@@ -383,8 +383,8 @@ class Tree {
 
       queue.splice(0, 1);
     }
-    if (callback == null){
-        return array;
+    if (callback == null) {
+      return array;
     }
     if (callback() !== null) {
       for (let i = 0; i < array.length; i++) {
@@ -583,37 +583,42 @@ let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 // Now write a function that does the following:
 
 // 1. Create a binary search tree from an array of random numbers < 100. You can create a function that returns an array of random numbers every time you call it if you wish.
-// 2. Confirm that the tree is balanced by calling isBalanced.
-// 3. Print out all elements in level, pre, post, and in order.
-// 4. Unbalance the tree by adding several numbers > 100.
-// 5. Confirm that the tree is unbalanced by calling isBalanced.
+// X    2. Confirm that the tree is balanced by calling isBalanced.
+// X    3. Print out all elements in level, pre, post, and in order.
+// X    4. Unbalance the tree by adding several numbers > 100.
+// X    5. Confirm that the tree is unbalanced by calling isBalanced.
 // 6. Balance the tree by calling rebalance.
 // 7. Confirm that the tree is balanced by calling isBalanced.
 // 8. Print out all elements in level, pre, post, and in order.
 
-function runScript() {
-  let array = createRandomArray(10);
+function runScript(number) {
+  // Takes an optional paramater that will be the length of the original tree
+
+  if (number == null) {
+    number = 5;
+  }
+  let array = createRandomArray(number);
   let tree = new Tree(array);
+  prettyPrint(tree.root);
   console.log(`tree.isBalanced?: ${tree.isBalanced()}`);
-  prettyPrint(tree.root)
-
-// Forgot to print out all the elements in level, pre, post, and in order
-console.log(`levelOrder: ${tree.levelOrder()}`);
-console.log(`preOrder: ${tree.preOrder()}`);
-console.log(`inOrder: ${tree.inOrder()}`);
-console.log(`postOrder: ${tree.postOrder()}`);
-
+  console.log(`levelOrder: ${tree.levelOrder()}`);
+  console.log(`preOrder: ${tree.preOrder()}`);
+  console.log(`inOrder: ${tree.inOrder()}`);
+  console.log(`postOrder: ${tree.postOrder()}`);
   for (let i = 0; i < 5; i++) {
     let newNumber = Math.floor(Math.random() * 1000);
     tree.insert(newNumber);
   }
-  prettyPrint(tree.root)
-
+  console.log(`inOrder: ${tree.inOrder()}`);
   console.log(`tree.isBalanced?: ${tree.isBalanced()}`);
+  prettyPrint(tree.root);
+  tree = tree.reBalance();
+  console.log(`tree.isBalanced?: ${tree.isBalanced()}`);
+  console.log(`levelOrder: ${tree.levelOrder()}`);
+  console.log(`preOrder: ${tree.preOrder()}`);
+  console.log(`inOrder: ${tree.inOrder()}`);
+  console.log(`postOrder: ${tree.postOrder()}`);
+  prettyPrint(tree.root);
 }
 
 runScript();
-
-
-// ***************************************************
-// preOrder and postOrder functions are returning the same array. Fix that. 
