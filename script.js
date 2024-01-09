@@ -388,7 +388,7 @@ class Tree {
       for (let i = 0; i < array.length; i++) {
         array[i] = callback(array[i]);
       }
-    //   console.log(`post-callback array: ${array}`);
+      //   console.log(`post-callback array: ${array}`);
     }
     return array;
   }
@@ -449,10 +449,10 @@ class Tree {
     // Takes a node and returns the height - the number of edges in the longest path from that node to a leaf node
     let count = 0;
     if (this.root == null) {
-    //   console.log(`Nothing in this tree, returning 0`);
+      //   console.log(`Nothing in this tree, returning 0`);
       return count;
     } else if (node == null) {
-    //   console.log(`Node is undefined, returning 0`);
+      //   console.log(`Node is undefined, returning 0`);
       return count;
     }
     count = node.height();
@@ -485,7 +485,7 @@ class Tree {
       }
     }
     if (currentNode == node) {
-    //   console.log(count);
+      //   console.log(count);
       return count;
     }
   }
@@ -499,17 +499,17 @@ class Tree {
 
     if (currentNode.left == undefined) {
       leftTreeHeight = 0;
-    //   console.log(`No left nodes, leftTreeHeight is ${leftTreeHeight}`);
+      //   console.log(`No left nodes, leftTreeHeight is ${leftTreeHeight}`);
     } else {
       leftTreeHeight = this.height(currentNode.left);
-    //   console.log(`left node detected, it's height is: ${leftTreeHeight}`);
+      //   console.log(`left node detected, it's height is: ${leftTreeHeight}`);
     }
     if (currentNode.right == undefined) {
       rightTreeHeight = 0;
-    //   console.log(`No right nodes, rightTreeHeight is ${rightTreeHeight}`);
+      //   console.log(`No right nodes, rightTreeHeight is ${rightTreeHeight}`);
     } else {
       rightTreeHeight = this.height(currentNode.right);
-    //   console.log(`right node detected, it's height is: ${rightTreeHeight}`);
+      //   console.log(`right node detected, it's height is: ${rightTreeHeight}`);
     }
     // console.log(`final leftTreeHeight: ${leftTreeHeight}`);
     // console.log(`final rightTreeHeight: ${rightTreeHeight}`);
@@ -518,18 +518,15 @@ class Tree {
       leftTreeHeight - rightTreeHeight > 1 ||
       rightTreeHeight - leftTreeHeight > 1
     ) {
-    //   console.log(`unbalanced tree`);
+      //   console.log(`unbalanced tree`);
       isBalanced = false;
     }
     return isBalanced;
   }
 
-  // *****************************************************************************************************
-  // *****************************************************************************************************
-
   reBalance() {
-// Returns a reference to this unchanged tree if it is already balanced
-// Otherwise returns as new tree from an inOrder array from the first unbalanced tree
+    // Returns a reference to this unchanged tree if it is already balanced
+    // Otherwise returns as new tree from an inOrder array from the first unbalanced tree
     if (this.isBalanced()) {
       console.log(`Tree is already balanced, returning tree`);
       return this;
@@ -539,7 +536,7 @@ class Tree {
       console.log(array);
 
       let newTree = new Tree(array);
-      return newTree
+      return newTree;
     }
   }
 }
@@ -575,6 +572,19 @@ console.log(testTree.isBalanced());
 logPrettyTree(testTree);
 
 let newTree = testTree.reBalance();
-console.log(newTree.isBalanced())
-prettyPrint(newTree.root)
+console.log(newTree.isBalanced());
+prettyPrint(newTree.root);
 
+// *****************************************************************************************************
+// *****************************************************************************************************
+
+// Now write a function that does the following:
+
+// 1. Create a binary search tree from an array of random numbers < 100. You can create a function that returns an array of random numbers every time you call it if you wish.
+// 2. Confirm that the tree is balanced by calling isBalanced.
+// 3. Print out all elements in level, pre, post, and in order.
+// 4. Unbalance the tree by adding several numbers > 100.
+// 5. Confirm that the tree is unbalanced by calling isBalanced.
+// 6. Balance the tree by calling rebalance.
+// 7. Confirm that the tree is balanced by calling isBalanced.
+// 8. Print out all elements in level, pre, post, and in order.
