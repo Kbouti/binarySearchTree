@@ -1,4 +1,8 @@
 // ******************************************************************************************************************************************************
+// Binary Search Tree project
+// Scroll to the bottom for driver script
+
+// ******************************************************************************************************************************************************
 // Helper Functions:
 
 function compareNumbers(a, b) {
@@ -580,16 +584,6 @@ let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 // *****************************************************************************************************
 // *****************************************************************************************************
 
-// Now write a function that does the following:
-
-// 1. Create a binary search tree from an array of random numbers < 100. You can create a function that returns an array of random numbers every time you call it if you wish.
-// X    2. Confirm that the tree is balanced by calling isBalanced.
-// X    3. Print out all elements in level, pre, post, and in order.
-// X    4. Unbalance the tree by adding several numbers > 100.
-// X    5. Confirm that the tree is unbalanced by calling isBalanced.
-// 6. Balance the tree by calling rebalance.
-// 7. Confirm that the tree is balanced by calling isBalanced.
-// 8. Print out all elements in level, pre, post, and in order.
 
 function runScript(number) {
   // Takes an optional paramater that will be the length of the original tree
