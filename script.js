@@ -418,7 +418,7 @@ class Tree {
       return null;
     }
     let array = [];
-    array = this.root.postOrder(array);
+    array = this.root.preOrder(array);
     if (callback !== undefined) {
       for (let i = 0; i < array.length; i++) {
         array[i] = callback(array[i]);
