@@ -490,57 +490,45 @@ class Tree {
     }
   }
 
-isBalanced(){
+  isBalanced() {
     // Returns true if the heights of the left and right subtree of every node differ by no more than 1
 
-// A binary search tree is balanced if:
-// The left half of the binary search tree is balanced
-// The right half of the binary search tree is balanced
-// The heights of the left and right trees differ by no more than one
+    // A binary search tree is balanced if:
+    // The left half of the binary search tree is balanced
+    // The right half of the binary search tree is balanced
+    // The heights of the left and right trees differ by no more than one
 
-let currentNode = this.root;
-let isBalanced = true;
-let leftTreeHeight;
-let rightTreeHeight;
+    let currentNode = this.root;
+    let isBalanced = true;
+    let leftTreeHeight;
+    let rightTreeHeight;
 
-if (currentNode.left == undefined){
-    leftTreeHeight = 0;
-    console.log(`No left nodes, leftTreeHeight is ${leftTreeHeight}`);
-}
+    if (currentNode.left == undefined) {
+      leftTreeHeight = 0;
+      console.log(`No left nodes, leftTreeHeight is ${leftTreeHeight}`);
+    } else {
+      leftTreeHeight = this.height(currentNode.left);
+      console.log(`left node detected, it's height is: ${leftTreeHeight}`);
+    }
+    if (currentNode.right == undefined) {
+      rightTreeHeight = 0;
+      console.log(`No right nodes, rightTreeHeight is ${rightTreeHeight}`);
+    } else {
+      rightTreeHeight = this.height(currentNode.right);
+      console.log(`right node detected, it's height is: ${rightTreeHeight}`);
+    }
+    console.log(`final leftTreeHeight: ${leftTreeHeight}`);
+    console.log(`final rightTreeHeight: ${rightTreeHeight}`);
 
-else {
-    leftTreeHeight = this.height(currentNode.left);
-    console.log(`left node detected, it's height is: ${leftTreeHeight}`);
-}
-
-
-if (currentNode.right == undefined){
-    rightTreeHeight = 0;
-    console.log(`No right nodes, rightTreeHeight is ${rightTreeHeight}`);
-
-}
-
-else {
-    rightTreeHeight = this.height(currentNode.right);
-    console.log(`right node detected, it's height is: ${rightTreeHeight}`);
-}
-
-
-console.log(`leftTreeHeight: ${leftTreeHeight}`);
-console.log(`rightTreeHeight: ${rightTreeHeight}`);
-
-
-if ((leftTreeHeight - rightTreeHeight  > 1) || (rightTreeHeight - leftTreeHeight > 1)){
-    console.log(`unbalanced tree`)
-    return false
-}
-
-// we never turn isBalanced to false
-
-
-}
-
-
+    if (
+      leftTreeHeight - rightTreeHeight > 1 ||
+      rightTreeHeight - leftTreeHeight > 1
+    ) {
+      console.log(`unbalanced tree`);
+      isBalanced = false;
+    }
+    return isBalanced;
+  }
 }
 
 // ******************************************************************************************************************************************************
@@ -561,14 +549,15 @@ let testArray8 = [20, 30, 32, 34, 36, 40, 50, 60, 85, 80, 75, 70, 65, 70];
 let testTree = new Tree(testArray8);
 // console.log(testTree);
 
-logPrettyTree(testTree);
-
 let node = testTree.find(85);
 let height = testTree.depth(node);
 console.log(testTree.isBalanced());
 
-testTree.insert(345);
+// testTree.insert(345);
 
-testTree.insert(345646);
-testTree.insert(3456465);
+// testTree.insert(345646);
+// testTree.insert(3456465);
+
+logPrettyTree(testTree);
+
 console.log(testTree.isBalanced());
